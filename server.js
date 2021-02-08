@@ -56,9 +56,20 @@ app.use("/view", viewRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  req.session.userID = "user1";
-  console.log(req.session.userID)
-  res.render("index");
+  db.query(`
+  SELECT users.name FROM users
+  WHERE users.id = 1;
+  `)
+  .then(data => {
+    req.session.userID = data.rows[0];
+    res.render("index");
+  })
+  .catch(err => {
+    res
+      .status(500)
+      .json({ error: err.message });
+  });
+
 });
 
 app.listen(PORT, () => {
