@@ -3,20 +3,39 @@ section {
 //  background-color: brown;
  .card {
    background-color: $card-color;
-   color: $snow;
+  //  color: $snow;
+   height: 20rem;
+   border-radius: 7px;
+
  }
  .part {
    margin: 5px;
-   padding: 5px;
+   padding: 2%;
+  //  height: 10rem;
+
+ }
+ .full {
+  padding: 2%;
+  margin: 5px;
  }
 }
+
+.card-header, .upvotes {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
 .incomplete-stories {
   display: flex;
-  margin: 5px;
+  // margin: 5px;
+  justify-content: space-between;
 }
 
 .completed {
   display: flex;
   flex-direction: column;
   width: 100%;
+  // margin: 5px;
+
 }

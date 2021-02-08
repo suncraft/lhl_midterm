@@ -27,12 +27,18 @@ form div {
   align-content: space-between;
 }
 
-form div button {
-  background-color: teal;
-  color: antiquewhite;
+button:hover {
+  background-color: $blue-munsell;
 }
+
 textarea {
   background: none;
+  background-color: $snow;
   border: 0;
-  border-bottom: 4px solid black;
+  border-bottom: 2px solid black;
+}
+
+textarea:focus {
+  // border-style: none;
+  outline: none;
 }
