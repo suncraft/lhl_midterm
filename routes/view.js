@@ -5,9 +5,9 @@ const router  = express.Router();
 module.exports = (db) => {
 
   //render view of the story with that id, if not a completed story, load contributions that are still waiting
-  router.get(`/${"storyid"}`, (req, res) => {
+  router.get("/:id", (req, res) => {
     //const templateVars = { shortURL: req.params.shortURL, longURL: urlDatabase[req.params.shortURL].longURL, user: users[req.session.userId]};
-    res.render("view/id page, templatevars")
+    res.render(`/${"storyid"}`,"view/id page, templatevars")
   });
 
   //toggle complete status

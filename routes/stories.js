@@ -30,5 +30,12 @@ module.exports = (db) => {
   });
 
 
+   //redirects to /view/:id to display specific story/wip, or whatever is clicked
+  router.post("/:id", function(req, res) {
+    //redirect to /view/:id to display specific story/wip
+    res.redirect(`/view/${"storyid"}`)
+
+  });
+
   return router;
 };
