@@ -1,0 +1,22 @@
+
+section {
+//  background-color: brown;
+ .card {
+   background-color: $card-color;
+   color: $snow;
+ }
+ .part {
+   margin: 5px;
+   padding: 5px;
+ }
+}
+.incomplete-stories {
+  display: flex;
+  margin: 5px;
+}
+
+.completed {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}

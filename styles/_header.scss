@@ -1,0 +1,38 @@
+form {
+  background-color: $card-color;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  align-items: center;
+  border-radius: 5px;
+  padding: 1%;
+
+  width: 80%;
+  max-width: 800px;
+
+  #title-start {
+    width: 50%;
+  }
+  #story-start {
+    width: 100%;
+    min-height: 6rem;
+  }
+}
+
+form div {
+  font-family: 'Bungee', sans-serif;
+  display: flex;
+  /* width: 100%; */
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+form div button {
+  background-color: teal;
+  color: antiquewhite;
+}
+textarea {
+  background: none;
+  border: 0;
+  border-bottom: 4px solid black;
+}

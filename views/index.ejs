@@ -12,6 +12,116 @@
   </head>
 
   <body>
-    <h1>Hello World!</h1>
+    <nav>
+      <span><a href="/">Story Creator</a></span>
+      <span class="logged-in">Logged in as: User1</span>
+      <button class="stories-list" type="button">My Stories</div>
+    </nav>
+
+    <header>
+      <form action="/newstory" method="POST">
+        <label for="directions">Start a story</label>
+        <textarea name="title" id="title-start" class="enteredToStory" placeholder="Title of Your Story"></textarea>
+        <textarea name="story" id="story-start" class="enteredToStory" placeholder="Once upon a time..."></textarea>
+        <div>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+      <hr>
+    </header>
+
+    <main>
+      <div><a href="./incomplete-stories">Continue Incomplete Stories</a></div>
+      <section class="incomplete-stories">
+        <!-- <div><a href="./incomplete-stories">Continue Incomplete Stories</a></div> -->
+        <article class="card part">
+          <div class="card-header">TITLE  /  By: User</div>
+          <div class="thumbnails"> IMG </div>
+          <div class="story">Some guy named Jim once walked across the known world doing crazy stuff. He once took an arrow to the...</div>
+          <footer class="upvotes"><button>Contribute</button>Upvotes</footer>
+        </article>
+
+        <article class="card part">
+          <div class="card-header">TITLE  /  By: User</div>
+          <div class="thumbnails"> IMG </div>
+          <div class="story">Some guy named Jim once walked across the known world doing crazy stuff. He once took an arrow to the...</div>
+          <footer class="upvotes"><button>Contribute</button>Upvotes</footer>
+        </article>
+
+
+      </section>
+      <hr>
+      <div><a href="./completed-stories">Read Completed Stories</a></div>
+      <section class="completed">
+
+
+        <article class="card full">
+          <div class="card-header">TITLE</div>
+          <div class="thumbnails">IMG</div>
+          <div class="story">Some guy named Jim once walked across the known world doing crazy stuff. He once took an arrow to the...</div>
+          <footer class="upvotes">Upvotes</footer>
+        </article>
+      </section>
+
+      <hr>
+
+
+
+
+
+
+
+<!--
+      <div class="container">
+        <form action="/action_page.php">
+        <div class="row">
+          <div class="col-25">
+            <label for="fname">First Name</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="fname" name="firstname" placeholder="Your name..">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="lname">Last Name</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="country">Country</label>
+          </div>
+          <div class="col-75">
+            <select id="country" name="country">
+              <option value="australia">Australia</option>
+              <option value="canada">Canada</option>
+              <option value="usa">USA</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="subject">Subject</label>
+          </div>
+          <div class="col-75">
+            <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <input type="submit" value="Submit">
+        </div>
+        </form>
+      </div> -->
+
+
+
+
+
+
+
+    </main>
   </body>
 </html>
