@@ -6,8 +6,8 @@ module.exports = (db) => {
   //render stories page which will have filters on top and
   //have the loaded either completed or wip stories below
   router.get("/", (req, res) => {
-    // sort by completed
-    if ("sort by complete") {
+    // sort by completed "sort by complete"
+    if (false) {
       // sort by order added
       if ("sort by completed and id ascending") {
         db.query('SELECT * FROM stories WHERE is_complete = true ORDER BY id ASC;')
@@ -40,8 +40,8 @@ module.exports = (db) => {
           .json({ error: err.message });
         });
       }
-      // sort by incomplete
-    } else if ("sort by incomplete") {
+      // sort by incomplete"sort by incomplete"
+    } else if (false) {
       // sort by order added
       if ("sort by incomplete and id ascending") {
         db.query('SELECT * FROM stories WHERE is_complete = false ORDER BY id ASC;')
@@ -74,8 +74,8 @@ module.exports = (db) => {
           .json({ error: err.message });
         });
       }
-      // search by user
-    } else if("user wants to search by specific user") {
+      // search by user"user wants to search by specific user"
+    } else if(false) {
       db.query('SELECT * FROM stories WHERE cretor_id = _____;')
       .then(data => {
         res.json(data.rows);
@@ -85,8 +85,8 @@ module.exports = (db) => {
         .status(500)
         .json({ error: err.message });
       });
-      // search by keywords in title
-    } else if("user wants to search titles by keyword/phrases") {
+      // search by keywords in title"user wants to search titles by keyword/phrases"
+    } else if(false) {
       db.query(`SELECT * FROM stories WHERE story_title LIKE '%_____%';`)
       .then(data => {
         res.json(data.rows);
@@ -96,8 +96,8 @@ module.exports = (db) => {
         .status(500)
         .json({ error: err.message });
       });
-      // sort by most liked
-    } else if("sort by most liked") {
+      // sort by most liked"sort by most liked"
+    } else if(false) {
       db.query(`SELECT stories.id, count(*) FROM stories LEFT JOIN upvote_stories ON stories.id = upvote_stories.story_id GROUP BY stories.id;`)
       .then(data => {
         let sortThis = data.rows;
@@ -118,18 +118,19 @@ module.exports = (db) => {
         .json({ error: err.message });
       });
       // default to just list all
-    }else {
-      db.query('SELECT * FROM stories;')
-      .then(data => {
-        res.json(data.rows);
-      })
-      .catch(err => {
-        res
-        .status(500)
-        .json({ error: err.message });
-      });
     }
-    res.render("completed and wip stories page");
+    // else {
+    //   db.query('SELECT * FROM stories;')
+    //   .then(data => {
+    //     res.json(data.rows);
+    //   })
+    //   .catch(err => {
+    //     res
+    //     .status(500)
+    //     .json({ error: err.message });
+    //   });
+    // }
+    res.render("filtered_stories");
   });
 
   //redirects to /view/:id to display specific story/wip
@@ -148,7 +149,8 @@ module.exports = (db) => {
   //render my-stories page, showing their stories
   router.get("/:id", (req, res) => {
     //const templateVars = { shortURL: req.params.shortURL, longURL: urlDatabase[req.params.shortURL].longURL, user: users[req.session.userId]};
-    res.render("show story page, templatevars")
+    //"show story page, templatevars"
+    res.render("view")
     //all current users stories
   });
 

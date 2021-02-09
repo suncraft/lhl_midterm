@@ -7,7 +7,8 @@ module.exports = (db) => {
   //render view of the story with that id, if not a completed story, load contributions that are still waiting
   router.get("/:id", (req, res) => {
     //const templateVars = { shortURL: req.params.shortURL, longURL: urlDatabase[req.params.shortURL].longURL, user: users[req.session.userId]};
-    res.render(`/${"storyid"}`,"view/id page, templatevars")
+    //`/${"storyid"}`,"view/id page, templatevars"
+    res.render("view")
     //specific story that user selected
     db.query('SELECT * FROM stories WHERE id = _____;');
   });
