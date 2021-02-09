@@ -58,10 +58,11 @@ app.use("/view", viewRoutes(db));
 app.get("/", (req, res) => {
   db.query(`
   SELECT users.name FROM users
-  WHERE users.id = 1;
+  WHERE users.id = 2;
   `)
   .then(data => {
-    req.session.userID = data.rows[0];
+    req.session.userID = data.rows[0].name;
+    //console.log(req.session.userID)
     res.render("index");
   })
   .catch(err => {
