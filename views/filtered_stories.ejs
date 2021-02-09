@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Home Page</title>
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+  </head>
+<!-- root/, /filtered, /mystories, /view/::id -->
+  <body>
+
+    <%- include('partials/_nav') %>
+
+    <main>
+
+      <section class="filterOptions">
+      <form action="/filter" method="POST">
+        <label for="filter-search">Filter by Keyword:</label>
+        <textarea name="filterUser" id="filter" placeholder="Search"></textarea>
+        <div>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+      <form action="/filter" method="POST">
+        <label for="filter-search">Filter by Keyword:</label>
+        <textarea name="filterKeyword" id="filter" placeholder="Search"></textarea>
+        <div>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+      <form action="/checkbox">
+        <input type="checkbox" id="filter1" name="mostLiked" value="By Likes">
+        <label for="filter1">Ordered by likes</label><br>
+        <input type="checkbox" id="filter2" name="orderAdded" value="By Order Added">
+        <label for="filter2">Ordered by Creation</label><br>
+        <input type="checkbox" id="filter3" name="completed" value="Completed">
+        <label for="filter3">Ordered by Completed or Not</label><br><br>
+        <input type="submit" value="Submit">
+      </form>
+    </section>
+      <!-- sort completed/incomplete,
+      order added
+      search user
+      search for <keyword
+        most liked -->
+
+
+      <section class="incomplete-stories">
+
+      </section>
+
+      <section class="completed">
+
+      </section>
+
+    </main>
+  </body>
+</html>

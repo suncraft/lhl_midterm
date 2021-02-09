@@ -10,13 +10,15 @@
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
   </head>
-
+<!-- root/, /filtered, /mystories, /view/::id -->
   <body>
-    <nav>
+    <!-- <nav>
       <span><a href="/">Story Creator</a></span>
       <span class="logged-in">Logged in as: User1</span>
       <button class="stories-list" type="button">My Stories</div>
-    </nav>
+    </nav> -->
+
+    <%- include('partials/_nav') %>
 
     <header>
       <form action="/newstory" method="POST">
@@ -30,7 +32,7 @@
     </header>
 
     <main>
-      <div><a href="./incomplete-stories">Continue Incomplete Stories</a></div>
+      <div><a href="./filtered-stories">Continue Incomplete Stories</a></div>
       <section class="incomplete-stories">
         <!-- <div><a href="./incomplete-stories">Continue Incomplete Stories</a></div> -->
         <article class="card part">
@@ -47,7 +49,6 @@
           <footer class="upvotes"><button>Contribute</button><button>Upvotes: +4</button></footer>
         </article>
 
-
       </section>
       <div><a href="./completed-stories">Read Completed Stories</a></div>
       <section class="completed">
@@ -60,62 +61,6 @@
           <footer class="upvotes"><button>Upvotes: +4</button></footer>
         </article>
       </section>
-
-      <hr>
-
-
-
-
-
-
-
-<!--
-      <div class="container">
-        <form action="/action_page.php">
-        <div class="row">
-          <div class="col-25">
-            <label for="fname">First Name</label>
-          </div>
-          <div class="col-75">
-            <input type="text" id="fname" name="firstname" placeholder="Your name..">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-25">
-            <label for="lname">Last Name</label>
-          </div>
-          <div class="col-75">
-            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-25">
-            <label for="country">Country</label>
-          </div>
-          <div class="col-75">
-            <select id="country" name="country">
-              <option value="australia">Australia</option>
-              <option value="canada">Canada</option>
-              <option value="usa">USA</option>
-            </select>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-25">
-            <label for="subject">Subject</label>
-          </div>
-          <div class="col-75">
-            <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-          </div>
-        </div>
-        <div class="row">
-          <input type="submit" value="Submit">
-        </div>
-        </form>
-      </div> -->
-
-
-
 
 
 
