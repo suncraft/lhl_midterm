@@ -15,14 +15,13 @@ module.exports = (db) => {
       ourQuery = 'SELECT * FROM stories WHERE is_complete = false';
     // search by user
     } else if(req.query.filterUser !== '') {
-      //  need to fix this
-      //  ourQuery = `SELECT * FROM stories WHERE cretor_id = 1;`;
+      ourQuery = `SELECT * FROM stories INNER JOIN users ON users.id = stories.cretor_id AND users.name = '${req.query.filterUser}';`;
     // search by keywords in title
     } else if(req.query.filterKeyword !== '') {
       ourQuery = `SELECT * FROM stories WHERE story_title LIKE '%${req.query.filterKeyword}%';`;
     // sort by most liked
     } else if(req.query.mostLiked === 'By Likes') {
-      ourQuery = `SELECT stories.id, count(*) FROM stories LEFT JOIN upvote_stories ON stories.id = upvote_stories.story_id GROUP BY stories.id;`;
+      ourQuery = `SELECT stories.*, count(*) FROM stories LEFT JOIN upvote_stories ON stories.id = upvote_stories.story_id GROUP BY stories.id;`;
     }
     db.query(ourQuery)
     .then(data => {
@@ -33,7 +32,6 @@ module.exports = (db) => {
       .status(500)
       .json({ error: err.message });
     });
-    //res.render("filtered_stories");
   });
 
   //redirects to /view/:id to display specific story/wip

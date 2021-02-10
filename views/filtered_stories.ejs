@@ -46,7 +46,11 @@
 
       <section class="data">
         <% for(const datum of data) { %>
-          <p>worked</p>
+          <article class="card full">
+            <div class="card-header"><span><%= datum.story_title %></span><span>By: <%= datum.cretor_id %></span></div>
+            <div class="thumbnails"><img src="../public/docs/unsplash01.jpg"></div>
+            <div class="story"><%= datum.story_beginning %></div>
+          </article>
         <% } %>
       </section>
 
