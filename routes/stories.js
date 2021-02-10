@@ -2,14 +2,18 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
-
   //render stories page which will have filters on top and
   //have the loaded either completed or wip stories below
   router.get("/", (req, res) => {
+    let mostLikes = req.query.mostLiked;
+    let orderAdded = req.query.orderAdded;
+    let completed = req.query.completed;
+    let incomplete = req.query.incomplete;
+
     // sort by completed "sort by complete"
-    if (false) {
-      // sort by order added
-      if ("sort by completed and id ascending") {
+    if (completed === 'Completed') {
+      // sort by order added - oldest/newest
+      if (orderAdded === 'By Order Added') {
         db.query('SELECT * FROM stories WHERE is_complete = true ORDER BY id ASC;')
         .then(data => {
           res.json(data.rows);
@@ -19,7 +23,7 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
         });
-      } else if ("sort by completed and id decending") {
+      } else {
         db.query('SELECT * FROM stories WHERE is_complete = true ORDER BY id DESC;')
         .then(data => {
           res.json(data.rows);
@@ -29,21 +33,11 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
         });
-      } else {
-        db.query('SELECT * FROM stories WHERE is_complete = true;')
-        .then(data => {
-          res.json(data.rows);
-        })
-        .catch(err => {
-          res
-          .status(500)
-          .json({ error: err.message });
-        });
       }
-      // sort by incomplete"sort by incomplete"
-    } else if (false) {
-      // sort by order added
-      if ("sort by incomplete and id ascending") {
+    // sort by incomplete
+    } else if (incomplete === 'Incomplete') {
+      // sort by order added - oldest/newest
+      if (orderAdded === 'By Order Added') {
         db.query('SELECT * FROM stories WHERE is_complete = false ORDER BY id ASC;')
         .then(data => {
           res.json(data.rows);
@@ -53,7 +47,7 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
         });
-      } else if ("sort by incomplete and id decending") {
+      } else {
         db.query('SELECT * FROM stories WHERE is_complete = false ORDER BY id DESC;')
         .then(data => {
           res.json(data.rows);
@@ -63,19 +57,9 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
         });
-      } else {
-        db.query('SELECT * FROM stories WHERE is_complete = false;')
-        .then(data => {
-          res.json(data.rows);
-        })
-        .catch(err => {
-          res
-          .status(500)
-          .json({ error: err.message });
-        });
       }
-      // search by user"user wants to search by specific user"
-    } else if(false) {
+    // search by user
+    } else if("user wants to search by specific user") {
       db.query('SELECT * FROM stories WHERE cretor_id = _____;')
       .then(data => {
         res.json(data.rows);
@@ -85,8 +69,8 @@ module.exports = (db) => {
         .status(500)
         .json({ error: err.message });
       });
-      // search by keywords in title"user wants to search titles by keyword/phrases"
-    } else if(false) {
+    // search by keywords in title
+    } else if("user wants to search titles by keyword/phrases") {
       db.query(`SELECT * FROM stories WHERE story_title LIKE '%_____%';`)
       .then(data => {
         res.json(data.rows);
@@ -96,8 +80,9 @@ module.exports = (db) => {
         .status(500)
         .json({ error: err.message });
       });
-      // sort by most liked"sort by most liked"
-    } else if(false) {
+    // sort by most liked
+    // the way this if is set up most liked cannot be combod with complete/incomplete
+    } else if(mostLikes === 'By Likes') {
       db.query(`SELECT stories.id, count(*) FROM stories LEFT JOIN upvote_stories ON stories.id = upvote_stories.story_id GROUP BY stories.id;`)
       .then(data => {
         let sortThis = data.rows;
@@ -117,19 +102,19 @@ module.exports = (db) => {
         .status(500)
         .json({ error: err.message });
       });
-      // default to just list all
+    // default to just list all
     }
-    // else {
-    //   db.query('SELECT * FROM stories;')
-    //   .then(data => {
-    //     res.json(data.rows);
-    //   })
-    //   .catch(err => {
-    //     res
-    //     .status(500)
-    //     .json({ error: err.message });
-    //   });
-    // }
+    else {
+      db.query('SELECT * FROM stories;')
+      .then(data => {
+        res.json(data.rows);
+      })
+      .catch(err => {
+        res
+        .status(500)
+        .json({ error: err.message });
+      });
+    }
     res.render("filtered_stories");
   });
 
