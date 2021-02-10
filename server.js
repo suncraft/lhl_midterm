@@ -57,12 +57,16 @@ app.use("/view", viewRoutes(db));
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
   db.query(`
-  SELECT users.name FROM users
+  SELECT users.name, users.id FROM users
   WHERE users.id = 2;
   `)
   .then(data => {
-    req.session.userID = data.rows[0].name;
-    //console.log(req.session.userID)
+    req.session.userName = data.rows[0].name;
+    req.session.userId = data.rows[0].id;
+
+    // console.log('userId', req.session.userId)
+    // console.log('userName', req.session.userName)
+
     res.render("index");
   })
   .catch(err => {
@@ -76,3 +80,8 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+module.exports = {
+  Pool,
+  dbParams,
+  db
+};

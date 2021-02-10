@@ -9,6 +9,8 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+    <script type="text/javascript" src="/scripts/indexload.js"></script>
+    <script type="text/javascript" src="/scripts/indexbuttons.js"></script>
   </head>
 <!-- root/, /filtered, /mystories, /view/::id -->
   <body>
@@ -21,7 +23,7 @@
     <%- include('partials/_nav') %>
 
     <header>
-      <form action="/newstory" method="POST">
+      <form action="/view/:id" method="GET">
         <label for="directions">Start a story</label>
         <textarea name="title" id="title-start" class="enteredToStory" placeholder="Title of Your Story"></textarea>
         <textarea name="story" id="story-start" class="enteredToStory" placeholder="Once upon a time..."></textarea>

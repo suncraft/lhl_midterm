@@ -10,7 +10,7 @@ module.exports = (db) => {
     //`/${"storyid"}`,"view/id page, templatevars"
     res.render("view")
     //specific story that user selected
-    db.query('SELECT * FROM stories WHERE id = _____;');
+    db.query(`SELECT * FROM stories WHERE id = ${req.session.userId};`);
   });
 
   //toggle complete status
