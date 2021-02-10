@@ -1,11 +1,3 @@
-// const { Pool } = require('pg');
-// const dbParams = require('./lib/db.js');
-//db = require('../../server');
-
-
-
-
-
 //this will be what loads the sample stories to the index page
 $(document).ready(function() {
 
@@ -24,13 +16,9 @@ $(document).ready(function() {
     console.log("created story element")
     return $story;
   };
+  console.log('data=', data, 'data.rows=', data.rows, 'data.rows[0]=', data.rows[0])
 
-  db.query(`
-    SELECT * FROM stories
-    WHERE is_complete = false
-    LIMIT 2;
-    `)
-  .then(data => {
+
     console.log("created story element2")
-    $(".incomplete-stories").prepend(createStoryElement(data.rows))});
+    $(".incomplete-stories").prepend(createStoryElement(data.rows));
 });

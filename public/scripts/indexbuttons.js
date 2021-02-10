@@ -32,21 +32,30 @@ $(document).ready(function() {
       throw new Error("Please enter a start to your story before submitting.");
     } else {
       //change hardcoded image to refer to db once db has actual images to refer to
-      const storyID = db.query(`
-      INSERT INTO stories (creator_id, story_title, story_beginning, is_complete, cover_photo_url)
-      VALUES (${req.session.userID}, ${$(this.children[1]).val().trim()}, ${$(this.children[2]).val().trim()}, 0, https://www.pexels.com/photo/landscape-photography-of-brown-mountains-surrounding-lake-620337/)
-      RETURNING *;
-      `);
+      // const storyID = db.query(`
+      // INSERT INTO stories (creator_id, story_title, story_beginning, is_complete, cover_photo_url)
+      // VALUES (${req.session.userID}, ${$(this.children[1]).val().trim()}, ${$(this.children[2]).val().trim()}, 0, https://www.pexels.com/photo/landscape-photography-of-brown-mountains-surrounding-lake-620337/)
+      // RETURNING *;
+      // `);
+
+      const user = req.session.userId
+      const newStory = {
+        user: user,
+        content: {
+          text: $(this.children[1]).val().trim(),
+          title: $(this.children[2]).val().trim()
+        }
+      }
+      console.log('user=', user, 'user.id=', user.id)
       $.ajax({
-        url: `view/${storyID.id}`,
-        method: "GET",
+        url: `view/${user.id}`,
+        method: "POST",
         data: $string
       })
         .done(() => {
           console.log('title', title, 'text', text)
-          console.log('story object', storyID, 'storyid', storyID.id)
-          //$(".incomplete-stories").prepend(createStoryElement(storyID))
-          //res.render(`view/${storyID.id}`)
+          $(".incomplete-stories").prepend(createStoryElement(newStory))
+          res.redirect(`view/${user.id}`)
         })
         .fail(error => console.log(error));
     }

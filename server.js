@@ -64,10 +64,17 @@ app.get("/", (req, res) => {
     req.session.userName = data.rows[0].name;
     req.session.userId = data.rows[0].id;
 
-    // console.log('userId', req.session.userId)
-    // console.log('userName', req.session.userName)
-
-    res.render("index");
+    db.query(`
+    SELECT * FROM stories;
+    `)
+    .then(data => {
+      res.render("index", data);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
   })
   .catch(err => {
     res
@@ -75,6 +82,46 @@ app.get("/", (req, res) => {
       .json({ error: err.message });
   });
 
+});
+
+
+app.post("/", (req, res) => {
+  //if there's text in the text box and the button has been pressed, redirect
+  //not sure if this distinguishes between title/body of story input?
+  if (req.query.title == '') {
+    res.status(400).json({ error: 'Woah there, your story needs a title! Try writing one =)'});
+    return;
+  };
+  if (!req.query.story) {
+    res.status(400).json({ error: 'Woah there, your story needs a beginning! Try writing one =)'});
+    return;
+  };
+  const user = req.body.user
+  const newStory = {
+    user: user,
+    content: {
+      text: req.body.text,
+      title: req.body.title
+    }
+  }
+  //still need to escape user input text to prevent attacks
+  //not sure if this query works
+
+  db.query(`
+  INSERT INTO stories (cretor_id, story_title, story_beginning, is_complete)
+  VALUES ( ${user.id}, ${user.content.title}, ${user.content.text}, 0)
+  RETURNING *;
+  `)
+  .then(data => {
+    const templateVars = { data };
+    console.log("I tried posting a new story on index");
+    res.redirect("view", templateVars);
+  })
+  .catch(err => {
+    res
+      .status(500)
+      .json({ error: err.message });
+  });
 });
 
 app.listen(PORT, () => {
