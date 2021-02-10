@@ -22,9 +22,9 @@ section {
 
 article {
   transition: all 500ms;
+  // box-shadow: rgba(3, 8, 20, 0.1) 0px 0.15rem 0.5rem, rgba(2, 8, 20, 0.1) 0px 0.075rem 0.175rem;
 }
 article:hover {
-  box-shadow: rgba(3, 8, 20, 0.1) 0px 0.15rem 0.5rem, rgba(2, 8, 20, 0.1) 0px 0.075rem 0.175rem;
   transform: scale(1.05);
 }
 
@@ -52,4 +52,5 @@ article:hover {
   display: flex;
   // flex-direction: column;
   width: 100%;
+  font-size: 20px;
 }
