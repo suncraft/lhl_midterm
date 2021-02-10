@@ -18,28 +18,24 @@
     <main>
 
       <section class="filterOptions">
-      <form action="/filter" method="POST">
+      <form action="/stories" method="POST">
+        <span>
         <label for="filter-search">Filter by Keyword:</label>
         <textarea name="filterUser" id="filter" placeholder="Search"></textarea>
-        <div>
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-      <form action="/filter" method="POST">
         <label for="filter-search">Filter by Keyword:</label>
         <textarea name="filterKeyword" id="filter" placeholder="Search"></textarea>
-        <div>
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-      <form action="/checkbox">
+        </span>
+        <span>
         <input type="checkbox" id="filter1" name="mostLiked" value="By Likes">
         <label for="filter1">Ordered by likes</label><br>
         <input type="checkbox" id="filter2" name="orderAdded" value="By Order Added">
         <label for="filter2">Ordered by Creation</label><br>
         <input type="checkbox" id="filter3" name="completed" value="Completed">
-        <label for="filter3">Ordered by Completed or Not</label><br><br>
-        <input type="submit" value="Submit">
+        <label for="filter3">Ordered by Completed Stories</label><br>
+        <input type="checkbox" id="filter4" name="incompleted" value="Not-completed">
+        <label for="filter3">Ordered Incomplete Stories</label><br>
+      </span>
+        <button type="submit">Apply Filters</button>
       </form>
     </section>
       <!-- sort completed/incomplete,
