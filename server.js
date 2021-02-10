@@ -68,7 +68,11 @@ app.get("/", (req, res) => {
     SELECT * FROM stories;
     `)
     .then(data => {
-      res.render("index", data);
+      const templateVars = {
+        stories: data.rows
+      }
+      console.log(data.rows, templateVars.stories)
+      res.render("index", templateVars);
     })
     .catch(err => {
       res
@@ -84,11 +88,29 @@ app.get("/", (req, res) => {
 
 });
 
+app.get("/api/stories", (req, res) => {
+  db.query(`
+    SELECT * FROM stories;
+    `)
+    .then(data => {
+      // const templateVars = {
+      //   stories: data.rows
+      // }
+      //console.log(data.rows, templateVars.stories)
+      res.json(data.rows);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+
+})
 
 app.post("/", (req, res) => {
   //if there's text in the text box and the button has been pressed, redirect
   //not sure if this distinguishes between title/body of story input?
-  if (req.query.title == '') {
+  if (!req.query.title) {
     res.status(400).json({ error: 'Woah there, your story needs a title! Try writing one =)'});
     return;
   };
