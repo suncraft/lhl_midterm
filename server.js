@@ -71,7 +71,7 @@ app.get("/", (req, res) => {
       const templateVars = {
         stories: data.rows
       }
-      console.log(data.rows, templateVars.stories)
+      //console.log(data.rows, templateVars.stories)
       res.render("index", templateVars);
     })
     .catch(err => {
@@ -91,8 +91,20 @@ app.get("/", (req, res) => {
 //route for sending data to the index page
 app.get("/api/index", (req, res) => {
   db.query(`
-    SELECT * FROM stories;
-    `)
+    SELECT
+    stories.*,
+    users.name AS username,
+    contributions.*,
+    (SELECT COUNT(stories.*) FROM stories
+      JOIN accepted_story_contributions ON stories.id = accepted_story_contributions.story_id)
+    AS upvotes
+    FROM stories
+    JOIN users ON users.id = cretor_id
+    LEFT JOIN accepted_story_contributions ON accepted_story_contributions.story_id = stories.id
+    JOIN contributions ON contributions.id = accepted_story_contributions.contribution_id
+    JOIN upvote_stories ON upvote_stories.story_id = stories.id
+    ;
+    `)//GROUP BY stories.id, accepted_story_contributions.id
     .then(data => {
       //console.log(data.rows, templateVars.stories)
       res.json(data.rows);
@@ -107,7 +119,7 @@ app.get("/api/index", (req, res) => {
 //route for sending data to the index page
 app.get("/api/view", (req, res) => {
   db.query(`
-    SELECT stories.*, contributions.* FROM stories
+    SELECT stories.*, contributions.*, users.name AS username FROM stories
     JOIN users ON users.id = cretor_id
     JOIN accepted_story_contributions ON accepted_story_contributions.story_id = stories.id
     JOIN contributions ON contributions.id = accepted_story_contributions.contribution_id
@@ -115,7 +127,7 @@ app.get("/api/view", (req, res) => {
     JOIN upvote_contribution ON upvote_contribution.contribution_id = contributions.id;
     `)
     .then(data => {
-      console.log(data.rows)
+      //console.log(data.rows)
       res.json(data.rows);
     })
     .catch(err => {
