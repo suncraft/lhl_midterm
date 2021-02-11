@@ -21,6 +21,7 @@ module.exports = (db) => {
     db.query(`INSERT INTO stories (cretor_id, story_title, story_beginning, is_complete) VALUES (${req.session.userId}, '${req.body.title}', '${req.body.story}', false);`)
     .then(data => {
       console.log("query executed")
+      // res.redirect(`/view/${this.id}`)
     })
     .catch(err => {
       res

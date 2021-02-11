@@ -8,12 +8,24 @@ $(document).ready(function() {
   }).done((stories) => {
     for(story of stories) {
       //console.log(stories)
-      if (story.is_complete) {
-        $(".completed").prepend(createStoryElement(story));
+      let storyArr = [];
+      if (!storyArr.includes(story.story_id)) {
+        storyArr.push(story.story_id)
+        if (story.is_complete) {
+          $(".completed").prepend(createStoryElement(story));
 
+        } else {
+          $(".incomplete-stories").prepend(createStoryElement(story));
+        }
       } else {
-        $(".incomplete-stories").prepend(createStoryElement(story));
+
       }
+      // if (story.is_complete) {
+      //   $(".completed").prepend(createStoryElement(story));
+
+      // } else {
+      //   $(".incomplete-stories").prepend(createStoryElement(story));
+      // }
 
       $("article.part").on("click", function(event) {
         //console.log($(this).attr("id"))
@@ -30,8 +42,8 @@ $(document).ready(function() {
     const $story = `
     <article class="card part" id=${story.story_id}>
     <div class="card-header"><span>${story.story_title}</span><span>By: ${story.username}</span></div>
-    <div class="story">${story.story_beginning} ${story.contribution}</div>
-    <footer class="upvotes"><button>Contribute</button><button>Upvotes: ${story.upvotes}</button></footer>
+    <div class="story">${story.story_beginning} ${story.contribution ? story.contribution: ""}</div>
+    <footer class="upvotes"><button>Contribute</button><button>Upvotes: ${story.upvotes ? story.upvotes: 0}</button></footer>
     </article>
     `;
     //${story.story_beginning}

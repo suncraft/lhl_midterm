@@ -94,15 +94,11 @@ app.get("/api/index", (req, res) => {
     SELECT
     stories.*,
     users.name AS username,
-    contributions.*,
-    (SELECT COUNT(stories.*) FROM stories
-      JOIN accepted_story_contributions ON stories.id = accepted_story_contributions.story_id)
-    AS upvotes
+    contributions.contribution
     FROM stories
-    JOIN users ON users.id = cretor_id
+    LEFT JOIN users ON users.id = cretor_id
     LEFT JOIN accepted_story_contributions ON accepted_story_contributions.story_id = stories.id
-    JOIN contributions ON contributions.id = accepted_story_contributions.contribution_id
-    JOIN upvote_stories ON upvote_stories.story_id = stories.id
+    LEFT JOIN contributions ON contributions.id = accepted_story_contributions.contribution_id
     ;
     `)//GROUP BY stories.id, accepted_story_contributions.id
     .then(data => {
@@ -115,6 +111,15 @@ app.get("/api/index", (req, res) => {
         .json({ error: err.message });
     });
 })
+// ,
+//     (SELECT COUNT(stories.*) FROM stories
+//       JOIN accepted_story_contributions ON stories.id = accepted_story_contributions.story_id)
+//     AS upvotes
+// contributions.*
+// LEFT JOIN accepted_story_contributions ON accepted_story_contributions.story_id = stories.id
+//     INNER JOIN contributions ON contributions.id = accepted_story_contributions.contribution_id
+//     INNER JOIN upvote_stories ON upvote_stories.story_id = stories.id
+
 
 //route for sending data to the index page
 app.get("/api/view", (req, res) => {
