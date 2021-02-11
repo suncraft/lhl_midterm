@@ -1,6 +1,6 @@
 -- Drop and recreate Stories table
 
-DROP TABLE IF EXISTS stories;
+DROP TABLE IF EXISTS stories CASCADE;
 CREATE TABLE stories (
   id SERIAL PRIMARY KEY NOT NULL,
   cretor_id INTEGER REFERENCES users(id),
