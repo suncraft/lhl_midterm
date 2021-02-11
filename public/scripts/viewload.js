@@ -4,7 +4,7 @@ $(document).ready(function() {
 
   $.ajax({
     method: "GET",
-    url: "/api/index"
+    url: "/api/view"
   }).done((stories) => {
     for(story of stories) {
       if (story.is_complete) {
@@ -14,7 +14,7 @@ $(document).ready(function() {
       }
     }
     //console.log(stories)
-  });;
+  });
 
   console.log("created story element3")
   const createStoryElement = function(story) {
