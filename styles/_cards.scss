@@ -52,5 +52,16 @@ article:hover {
   display: flex;
   // flex-direction: column;
   width: 100%;
-  font-size: 20px;
+  font-size: 14px;
+
+
+  form {
+    :first-child {
+      flex-direction: column;
+    }
+  }
+
 }
+
+
+
