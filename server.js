@@ -42,6 +42,7 @@ const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 const storiesRoutes = require("./routes/stories");
 const viewRoutes = require("./routes/view");
+const contributionRoutes = require('./routes/contribution.js');
 
 
 // Mount all resource routes
@@ -51,6 +52,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 app.use("/stories", storiesRoutes(db));
 app.use("/view", viewRoutes(db));
+app.use("/contribution", contributionRoutes(db));
 
 // Home page
 // Warning: avoid creating more routes in this file!

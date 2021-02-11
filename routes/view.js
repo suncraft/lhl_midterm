@@ -1,4 +1,3 @@
-
 const express = require('express');
 const router  = express.Router();
 
@@ -17,6 +16,7 @@ module.exports = (db) => {
   //choose a contribution to accept/reject
   //add a contribution you wrote
   //upvote a contribution
+
   router.post("/:id", function(req, res) {
     db.query(`INSERT INTO stories (cretor_id, story_title, story_beginning, is_complete) VALUES (${req.session.userId}, '${req.body.title}', '${req.body.story}', false);`)
     .then(data => {
@@ -29,5 +29,6 @@ module.exports = (db) => {
       .json({ error: err.message });
     });
   });
+
   return router;
 };
