@@ -9,6 +9,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Asul&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Asul&family=Quattrocento&display=swap');
 
 * {
   box-sizing: border-box;
@@ -17,8 +18,10 @@
 body {
   background-color: $snow;
   // font-family: sans-serif;
-  font-family: 'Asul', sans-serif;
+  // font-family: 'Asul', sans-serif;
   // font-family: 'Libre Baskerville', sans-serif;
+  // font-family: 'Asul', sans-serif;
+  font-family: 'Quattrocento', serif;
   font-size: 24px;
 }
 
