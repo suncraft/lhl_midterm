@@ -18,7 +18,7 @@
     <main>
 
       <section class="filterOptions">
-      <form action="/stories" method="POST">
+      <form action="/stories" >
         <span>
         <label for="filter-search">Filter by Keyword:</label>
         <textarea name="filterUser" placeholder="Search"></textarea>
@@ -44,13 +44,14 @@
       search for <keyword
         most liked -->
 
-
-      <section class="incomplete-stories">
-
-      </section>
-
-      <section class="completed">
-
+      <section class="data">
+        <% for(const datum of data) { %>
+          <article class="card full">
+            <div class="card-header"><span><%= datum.story_title %></span><span>By: <%= datum.name %></span></div>
+            <div class="thumbnails"><img src="../public/docs/unsplash01.jpg"></div>
+            <div class="story"><%= datum.story_beginning %></div>
+          </article>
+        <% } %>
       </section>
 
     </main>
