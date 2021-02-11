@@ -7,7 +7,7 @@ form {
   border-radius: 5px;
   padding: 1%;
 
-  width: 80%;
+  // width: 80%;
   max-width: 800px;
 
   #title-start {
@@ -16,6 +16,10 @@ form {
   #story-start {
     width: 100%;
     min-height: 6rem;
+  }
+  #contribution {
+      min-width: 600px;
+
   }
 
   // span {

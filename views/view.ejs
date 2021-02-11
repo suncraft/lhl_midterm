@@ -17,12 +17,15 @@
 
     <main>
 
-      <section class="incomplete-stories">
 
-      </section>
-
-      <section class="completed">
-
+        <section class="card full add">
+        <form action="/stories/<%= %>/contribute" method="POST">
+          <label for="directions">Add to a Story:</label>
+          <textarea name="contribution" id="contribution" class="addedToStory" placeholder="What happens next.."></textarea>
+          <div>
+            <button type="submit">Submit</button>
+          </div>
+        </form>
       </section>
 
     </main>
