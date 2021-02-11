@@ -88,14 +88,12 @@ app.get("/", (req, res) => {
 
 });
 
-app.get("/api/stories", (req, res) => {
+//route for sending data to the index page
+app.get("/api/index", (req, res) => {
   db.query(`
     SELECT * FROM stories;
     `)
     .then(data => {
-      // const templateVars = {
-      //   stories: data.rows
-      // }
       //console.log(data.rows, templateVars.stories)
       res.json(data.rows);
     })
@@ -104,8 +102,26 @@ app.get("/api/stories", (req, res) => {
         .status(500)
         .json({ error: err.message });
     });
-
 })
+
+//route for sending data to the index page
+app.get("/api/view", (req, res) => {
+  db.query(`
+    SELECT * FROM stories
+    JOIN users ON users.id = cretor_id
+    WHERE users.id = ${req.session.userId};
+    `)
+    .then(data => {
+      //console.log(data.rows, templateVars.stories)
+      res.json(data.rows);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+})
+
 
 app.post("/", (req, res) => {
   //if there's text in the text box and the button has been pressed, redirect
