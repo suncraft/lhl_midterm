@@ -15,7 +15,8 @@ $(document).ready(function() {
       .done(() => {
         console.log('title', title, 'text', text)
         $(".incomplete-stories").prepend(createStoryElement(newStory))
-        res.redirect(`view/${user.id}`)
+        //res.redirect(`view/${user.id}`)
+
       })
       .fail(error => console.log(error));
     }
