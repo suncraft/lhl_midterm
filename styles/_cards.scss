@@ -32,13 +32,15 @@ article:hover {
   display: flex;
   justify-content: space-between;
   margin-top: 15px;
-
+  font-family: 'Asul', sans-serif;
+  font-size: bold;
 }
 
 .incomplete-stories {
   display: flex;
   // margin: 5px;
   justify-content: space-between;
+
 }
 
 .completed {
