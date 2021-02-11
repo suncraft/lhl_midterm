@@ -23,11 +23,12 @@ $(document).ready(function() {
     const $story = `
     <article class="card part">
     <div class="card-header"><span>${story.story_title}</span><span>By: ${story.cretor_id}</span></div>
-    <div class="thumbnails"><img src="${story.cover_photo_url}"></div>
+    <div class="thumbnails"><img src="styles/blue.jpg"></div>
     <div class="story">${story.story_beginning}</div>
     <footer class="upvotes"><button>Contribute</button><button>Upvotes: +4</button></footer>
     </article>
     `;
+    //${story.story_beginning}
     console.log("created story element")
     return $story;
   };
