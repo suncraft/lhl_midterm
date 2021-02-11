@@ -4,24 +4,34 @@ section {
  .card {
    background-color: $card-color;
   //  color: $snow;
-   height: 20rem;
+  //  min-height: 20rem;
    border-radius: 7px;
  }
 
  .part {
-   margin: 5px;
-   padding: 2%;
+  margin: 5px;
+  padding: 2%;
   //  height: 10rem;
+  width: 100%;
 
  }
  .full {
   padding: 2%;
-  margin: 5px;
+  margin: 10px;
  }
 
  .add {
    width: auto;
  }
+
+
+}
+
+.contributions {
+  background-color: $blue-munsell;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 800px;
 }
 
 article {
@@ -31,6 +41,7 @@ article {
 article:hover {
   transform: scale(1.05);
 }
+
 
 .card-header, .upvotes {
   display: flex;
@@ -42,6 +53,7 @@ article:hover {
 
 .incomplete-stories {
   display: flex;
+  width: 100%;
   // margin: 5px;
   justify-content: space-between;
 

@@ -22,14 +22,16 @@ form {
 
   }
 
-  // span {
-  //   display: flex;
-  //   flex-direction: column;
-  //   :last-child {
-  //     flex-direction: row;
-  //   }
-  // }
+  @media only screen and (max-width: 750px) {
+    span {
+      display: flex;
+      flex-direction: column;
 
+    }
+    span:last-child {
+      flex-direction: row;
+    }
+  }
 
 
 }
@@ -40,10 +42,6 @@ form div {
   /* width: 100%; */
   justify-content: space-between;
   align-content: space-between;
-}
-
-button:hover {
-  background-color: $blue-munsell;
 }
 
 textarea {

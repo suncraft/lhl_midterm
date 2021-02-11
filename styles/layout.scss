@@ -75,6 +75,10 @@ button:hover {
   display: none;
 }
 
+footer:last-child {
+  margin-top: 200px;
+}
+
 
 //testing/temp code
 // @media only screen and (max-width: 600px) {
@@ -82,3 +86,6 @@ button:hover {
 //     background-color: lightblue;
 //   }
 // }
+
+//accepted: moved, appear inside story
+//unaccepted: own box/bubble colour, and have an accept button for this:
