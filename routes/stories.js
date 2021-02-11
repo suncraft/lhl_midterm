@@ -6,23 +6,26 @@ module.exports = (db) => {
   //have the loaded either completed or wip stories below
   //{"error":"column \"_____\" does not exist"}
   router.get("/", (req, res) => {
-    let ourQuery = "SELECT * FROM stories;";
+    // default sort by order created newest -> oldest
+    let ourQuery = "SELECT stories.*, users.name FROM stories INNER JOIN users ON users.id = stories.cretor_id;";
     // sort by completed "sort by complete"
     if (req.query.completed === 'Completed') {
-      ourQuery = 'SELECT stories.*, users.name FROM stories INNER JOIN users ON users.id = stories.cretor_id AND stories.is_complete = true'
+      ourQuery = 'SELECT stories.*, users.name FROM stories INNER JOIN users ON users.id = stories.cretor_id AND stories.is_complete = true;';
     // sort by incomplete
     } else if (req.query.incompleted === 'Not-completed') {
-      ourQuery = 'SELECT stories.*, users.name FROM stories INNER JOIN users ON users.id = stories.cretor_id AND stories.is_complete = false'
+      ourQuery = 'SELECT stories.*, users.name FROM stories INNER JOIN users ON users.id = stories.cretor_id AND stories.is_complete = false;';
     // search by user
     } else if(req.query.filterUser !== '') {
       ourQuery = `SELECT stories.*, users.name FROM stories INNER JOIN users ON users.id = stories.cretor_id AND users.name = '${req.query.filterUser}';`;
     // search by keywords in title
     } else if(req.query.filterKeyword !== '') {
       ourQuery = `SELECT stories.*, users.name FROM stories INNER JOIN users ON story_title LIKE '%${req.query.filterKeyword}%' AND users.id = stories.cretor_id;`;
-
     // sort by most liked
     } else if(req.query.mostLiked === 'By Likes') {
       ourQuery = `SELECT stories.*, count(*) FROM stories LEFT JOIN upvote_stories ON stories.id = upvote_stories.story_id GROUP BY stories.id;`;
+    // sort by order created oldest -> newest
+    } else if(req.query.orderAdded === 'By Order Added') {
+      ourQuery = `SELECT stories.*, users.name FROM stories INNER JOIN users ON users.id = stories.cretor_id ORDER BY stories.id DESC;`;
     }
     db.query(ourQuery)
     .then(data => {
