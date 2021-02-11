@@ -7,10 +7,8 @@ $(document).ready(function() {
     url: "/api/view"
   }).done((stories) => {
     for(story of stories) {
-      if (story.is_complete) {
+      if (story.id === 2) {
         $(".completed").prepend(createStoryElement(story));
-      } else {
-        $(".incomplete-stories").prepend(createStoryElement(story));
       }
     }
     //console.log(stories)
@@ -21,7 +19,7 @@ $(document).ready(function() {
     //const date = $.timeago(new Date(story.created_at));
     // console.log(story)
     const $story = `
-    <article class="card part">
+    <article class="card part" id=${story.id}>
     <div class="card-header"><span>${story.story_title}</span><span>By: ${story.cretor_id}</span></div>
     <div class="thumbnails"><img src="styles/blue.jpg"></div>
     <div class="story">${story.story_beginning}</div>
@@ -33,5 +31,7 @@ $(document).ready(function() {
     return $story;
   };
   //console.log('data=', stories)//, 'data[0]=', stories[0], 'data.title=', stories.story_title, 'data.beginning=', stories.story_beginning)
+
+
 
 });

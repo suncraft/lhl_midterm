@@ -107,12 +107,15 @@ app.get("/api/index", (req, res) => {
 //route for sending data to the index page
 app.get("/api/view", (req, res) => {
   db.query(`
-    SELECT * FROM stories
+    SELECT stories.*, contributions.* FROM stories
     JOIN users ON users.id = cretor_id
-    WHERE users.id = ${req.session.userId};
+    JOIN accepted_story_contributions ON accepted_story_contributions.story_id = stories.id
+    JOIN contributions ON contributions.id = accepted_story_contributions.contribution_id
+    JOIN upvote_stories ON upvote_stories.story_id = stories.id
+    JOIN upvote_contribution ON upvote_contribution.contribution_id = contributions.id;
     `)
     .then(data => {
-      //console.log(data.rows, templateVars.stories)
+      console.log(data.rows)
       res.json(data.rows);
     })
     .catch(err => {
