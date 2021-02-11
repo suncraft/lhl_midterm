@@ -93,14 +93,10 @@ app.get("/api/index", (req, res) => {
   db.query(`
     SELECT
     stories.*,
-    users.name AS username,
-    contributions.contribution
+    users.name AS username
     FROM stories
-    LEFT JOIN users ON users.id = cretor_id
-    LEFT JOIN accepted_story_contributions ON accepted_story_contributions.story_id = stories.id
-    LEFT JOIN contributions ON contributions.id = accepted_story_contributions.contribution_id
-    ;
-    `)//GROUP BY stories.id, accepted_story_contributions.id
+    LEFT JOIN users ON users.id = cretor_id;
+    `)
     .then(data => {
       //console.log(data.rows, templateVars.stories)
       res.json(data.rows);
@@ -111,6 +107,17 @@ app.get("/api/index", (req, res) => {
         .json({ error: err.message });
     });
 })
+
+
+// SELECT
+//     stories.*,
+//     users.name AS username,
+//     contributions.contribution
+//     FROM stories
+//     LEFT JOIN users ON users.id = cretor_id
+//     LEFT JOIN accepted_story_contributions ON accepted_story_contributions.story_id = stories.id
+//     LEFT JOIN contributions ON contributions.id = accepted_story_contributions.contribution_id
+//     ;
 // ,
 //     (SELECT COUNT(stories.*) FROM stories
 //       JOIN accepted_story_contributions ON stories.id = accepted_story_contributions.story_id)
@@ -119,6 +126,55 @@ app.get("/api/index", (req, res) => {
 // LEFT JOIN accepted_story_contributions ON accepted_story_contributions.story_id = stories.id
 //     INNER JOIN contributions ON contributions.id = accepted_story_contributions.contribution_id
 //     INNER JOIN upvote_stories ON upvote_stories.story_id = stories.id
+
+//route for sending contribution data to the index page
+// app.get("/api/acceptedcontributions", (req, res) => {
+//   db.query(`
+//     SELECT
+//     contributions.*
+//     FROM contributions
+//     INNER JOIN accepted_story_contributions ON accepted_story_contributions.contribution_id = contributions.id
+//     ;
+//     `)//GROUP BY stories.id, accepted_story_contributions.id
+//     .then(data => {
+//       //console.log(data.rows, templateVars.stories)
+//       res.json(data.rows);
+//     })
+//     .catch(err => {
+//       res
+//         .status(500)
+//         .json({ error: err.message });
+//     });
+// })
+
+
+// //route for sending story upvotes to the index page
+// app.get("/api/storyupvotes", (req, res) => {
+//   db.query(`
+//     SELECT
+//     stories.*,
+//     users.name AS username,
+//     contributions.contribution
+//     FROM stories
+//     LEFT JOIN users ON users.id = cretor_id
+//     LEFT JOIN accepted_story_contributions ON accepted_story_contributions.story_id = stories.id
+//     LEFT JOIN contributions ON contributions.id = accepted_story_contributions.contribution_id
+//     ;
+//     `)//GROUP BY stories.id, accepted_story_contributions.id
+//     .then(data => {
+//       //console.log(data.rows, templateVars.stories)
+//       res.json(data.rows);
+//     })
+//     .catch(err => {
+//       res
+//         .status(500)
+//         .json({ error: err.message });
+//     });
+// })
+
+
+
+
 
 
 //route for sending data to the index page
