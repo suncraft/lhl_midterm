@@ -9,16 +9,17 @@ module.exports = (db) => {
     let ourQuery = "SELECT * FROM stories;";
     // sort by completed "sort by complete"
     if (req.query.completed === 'Completed') {
-      ourQuery = 'SELECT * FROM stories WHERE is_complete = true';
+      ourQuery = 'SELECT stories.*, users.name FROM stories INNER JOIN users ON users.id = stories.cretor_id AND stories.is_complete = true'
     // sort by incomplete
     } else if (req.query.incompleted === 'Not-completed') {
-      ourQuery = 'SELECT * FROM stories WHERE is_complete = false';
+      ourQuery = 'SELECT stories.*, users.name FROM stories INNER JOIN users ON users.id = stories.cretor_id AND stories.is_complete = false'
     // search by user
     } else if(req.query.filterUser !== '') {
-      ourQuery = `SELECT * FROM stories INNER JOIN users ON users.id = stories.cretor_id AND users.name = '${req.query.filterUser}';`;
+      ourQuery = `SELECT stories.*, users.name FROM stories INNER JOIN users ON users.id = stories.cretor_id AND users.name = '${req.query.filterUser}';`;
     // search by keywords in title
     } else if(req.query.filterKeyword !== '') {
-      ourQuery = `SELECT * FROM stories WHERE story_title LIKE '%${req.query.filterKeyword}%';`;
+      ourQuery = `SELECT stories.*, users.name FROM stories INNER JOIN users ON story_title LIKE '%${req.query.filterKeyword}%' AND users.id = stories.cretor_id;`;
+
     // sort by most liked
     } else if(req.query.mostLiked === 'By Likes') {
       ourQuery = `SELECT stories.*, count(*) FROM stories LEFT JOIN upvote_stories ON stories.id = upvote_stories.story_id GROUP BY stories.id;`;
