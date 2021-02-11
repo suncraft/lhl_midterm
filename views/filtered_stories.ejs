@@ -30,14 +30,38 @@
         <label for="filter1">Ordered by likes</label><br>
         <input type="checkbox" id="filter2" name="orderAdded" value="By Order Added">
         <label for="filter2">Ordered by Creation</label><br>
-        <input type="checkbox" id="filter3" name="completed" value="Completed">
+        <input type="radio" id="filter3" name="completed" value="Completed">
         <label for="filter3">Show only Completed Stories</label><br>
-        <input type="checkbox" id="filter4" name="incompleted" value="Not-completed">
+        <input type="radio" id="filter4" name="incompleted" value="Not-completed">
         <label for="filter3">Show only Incomplete Stories</label><br>
       </span>
         <button type="submit">Apply Filters</button>
       </form>
     </section>
+
+
+<!-- TEST CODE FROM w3 schools for radio buttons -->
+
+    <!-- <style>
+      #uncheck>input { display: none }
+      input:checked + label { display: none }
+      input:not(:checked) + label + label{ display: none }
+   </style>
+
+   <div id='uncheck'>
+     <input type="radio" name='food' id="box1" />
+     Pizza
+       <label for='box1'>&#9678;</label>
+       <label for='box0'>&#9673;</label>
+     <input type="radio" name='food' id="box2" />
+     Ice cream
+       <label for='box2'>&#9678;</label>
+       <label for='box0'>&#9673;</label>
+     <input type="radio" name='food' id="box0" checked />
+   </div> -->
+
+
+
       <!-- sort completed/incomplete,
       order added
       search user
