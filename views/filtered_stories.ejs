@@ -65,15 +65,18 @@
       order added
       search user
       search for <keyword
-        most liked -->
+        most liked
+       -->
 
       <section class="data">
         <% for(const datum of data) { %>
+        <a href = '/view/<%= datum.id %>'>
           <article class="card full">
-            <div class="card-header"><span><%= datum.story_title %></span><span>By: <%= datum.name %></span></div>
+            <div class="card-header"><span ><%= datum.story_title %></span><span>By: <%= datum.name %></span></div>
             <div class="thumbnails"><img src="../public/docs/unsplash01.jpg"></div>
             <div class="story"><%= datum.story_beginning %></div>
           </article>
+        </a>
         <% } %>
       </section>
 
