@@ -1,21 +1,28 @@
 
+  // background-image: url("https://pixabay.com/get/g3c971d68d4ef02c89adfec8aa3fd23b616531bcf66493744f228f1d6c08e85826c17478bff9610ed15808baf91ec0698_640.png");
+  // background-repeat: repeat;
+
 section {
 //  background-color: brown;
 a:link, a:visited {
-  // padding: 14px 21px;
-  // border-radius: 5px;
-  // text-align: center;
   text-decoration: none;
-  // display: inline-block;
   cursor: default;
-
 }
  .card {
    background-color: $card-color;
+  // background-image: $imgURL;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  // background-color: $card-color;
+  // background: $card-colort;
+
   //  color: $snow;
   //  min-height: 20rem;
    border-radius: 7px;
-
+   display: flex;
+   flex-direction: column;
  }
 
  .part {
@@ -25,6 +32,7 @@ a:link, a:visited {
   width: 100%;
 
  }
+
  .full {
   padding: 2%;
   margin: 10px;
@@ -58,13 +66,16 @@ article:hover {
   transform: scale(1.05);
 }
 
-
 .card-header, .upvotes {
   display: flex;
   justify-content: space-between;
   margin-top: 15px;
   font-family: 'Asul', sans-serif;
   font-size: bold;
+}
+//THIS KEEPS ITS NAME BECAUSE IT'S ALREADY ALL OVER EJS otherwise would be just footer
+.upvotes:last-child {
+    margin-top: auto
 }
 
 .incomplete-stories {
