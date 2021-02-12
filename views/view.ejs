@@ -33,7 +33,7 @@
               <div class="story"><%= datum.contribution %></div>
 
             </article>
-            <% iterationCount+= 1 %>
+            <!-- <% iterationCount+= 1 %> -->
             <% } else { %>
               <article class="card full">
                 <div class="story"><%= datum.contribution %></div>
@@ -42,16 +42,19 @@
                 <% } %>
 
               </section>
+              <% if (!data.is_complete) { %>
+                <section class="card full add">
+                <form action="/view/contribution" method="POST">
+                  <label for="directions">Add to a Story:</label>
+                  <textarea name="contribution" id="contribution" class="addedToStory" placeholder="What happens next.."></textarea>
+                  <div>
+                    <button type="submit">Submit</button>
+                  </div>
+                </form>
+              </section>
+              <% } else { %>
 
-        <section class="card full add">
-        <form action="/view/contribution" method="POST">
-          <label for="directions">Add to a Story:</label>
-          <textarea name="contribution" id="contribution" class="addedToStory" placeholder="What happens next.."></textarea>
-          <div>
-            <button type="submit">Submit</button>
-          </div>
-        </form>
-      </section>
+              <% } %>
 
     </main>
   </body>

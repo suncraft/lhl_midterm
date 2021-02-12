@@ -35,7 +35,7 @@ module.exports = (db) => {
 
 
     db.query(`
-    SELECT contributions.story_id AS storyId, accepted_story_contributions.contribution_id, contributions.contribution AS contribution, contributions.id AS contributionID, stories.story_title AS title, stories.story_beginning AS beginning
+    SELECT contributions.story_id AS storyId, accepted_story_contributions.contribution_id, contributions.contribution AS contribution, contributions.id AS contributionID, stories.story_title AS title, stories.story_beginning AS beginning, stories.is_complete
     FROM accepted_story_contributions
     RIGHT JOIN contributions ON accepted_story_contributions.contribution_id = contributions.id
     JOIN stories ON stories.id = contributions.story_id
