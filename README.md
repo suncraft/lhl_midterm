@@ -1,7 +1,7 @@
 LHL Node Skeleton
 =========
 
-## Collaporators
+## Collaborators
 - Jaime Reuss 
 https://github.com/KPCE
 - Robin Mackenzie 
