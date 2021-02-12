@@ -1,6 +1,5 @@
 //this will be what loads the sample stories to the index page
 $(document).ready(function() {
-
   $(`button.full`).click(function(e){
     e.preventDefault();
     let contributionId = $(this).attr("id")
