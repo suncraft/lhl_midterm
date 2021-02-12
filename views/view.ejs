@@ -17,16 +17,23 @@
 
     <main>
 
-
+      <% console.log(data) %>
       <section class="card full contributions">
-        <article class="card full">
-          <div class="card-header"><span>By: User</span></div>
-          <div class="story">We continued to get lots and lots of chips.</div>
-          <footer class="upvotes"><button>Accept Contribution</button><button>Upvotes: +4</button></footer>
+        <article class="card full" id="<%= data[0].storyid %>">
+          <div class="card-header"><span ><%= data[0].title %></span></div>
+          <div class="thumbnails"><img src="../public/docs/unsplash01.jpg"></div>
+          <div class="story"><%= data[0].beginning %></div>
         </article>
-
-
-
+        <article class="card full">
+        <% for(const datum of data) { %>
+          <% if (datum.contribution_id) { %>
+            <div class="story"><%= datum.contribution %></div>
+            <% } else { %>
+              <div class="story"><%= datum.contribution %></div>
+              <footer class="upvotes"><button>Accept Contribution</button><button>Upvotes: +4</button></footer>
+          <% } %>
+        <% } %>
+        </article>
       </section>
 
         <section class="card full add">

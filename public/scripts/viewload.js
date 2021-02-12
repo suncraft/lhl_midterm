@@ -15,11 +15,6 @@ $(document).ready(function() {
     method: "GET",
     url: "/api/view"
   }).done((stories) => {
-    for(story of stories) {
-      if (story.id === 2) {
-        $("main").prepend(createStoryElement(story));
-      }
-    }
     //check there's content in contribution field
     //query db to write the contribution in, return the inserted row
     //AJAX to re-render the page, clear form and display contributions again
@@ -27,7 +22,7 @@ $(document).ready(function() {
       event.preventDefault();
       let $string = $(this).serialize();
       let storyId = $("article.full").attr("id")
-      $string += "&storyId=2";
+      $string += `&storyId=${storyId}`;
       //errors are not currently working, were before I changed post to get?
       if ($(this.children[2]).length < 1) {
         throw new Error("Please enter text for contributing to a story.");
