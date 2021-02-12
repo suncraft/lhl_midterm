@@ -6,6 +6,19 @@ module.exports = (db) => {
   router.get("/:id", (req, res) => {
     //  this right here is the only thing i changed
     console.log("this here is the god variable ===>", req.params.id)
+    /* Jaime's comments
+      So bad news first, the query below will yield a server error if the clicked story has 0 accepted contributions
+      2 ways around this. First, change our db to get rid of accepted contributions table,
+      and just have a column in contributions that stores the boolean value
+      Second option which I'm rooting for our demo I think! all seeded stories to have accepted contributions
+      drawback of second option: submit button on index will never work for showing that story on view,
+      because a just started story will never be able to have an accepted contribution on creation.
+      Let's just do that, and make a joke about our table design in the demo.
+
+
+
+      Munraj's comments below
+    */
     //  i dont know why but req.params has an id key that holds the correct id of each story
     //  so i used that as the value for the query and didnt need to directly pass anything between pages
     ///////////////////////////////////////////////////////////////////////
@@ -40,6 +53,20 @@ module.exports = (db) => {
   //upvote a contribution
 
   router.post("/:id", function(req, res) {
+    // if (!req.query.title) {
+    //   res.status(400).json({ error: 'Woah there, your story needs a title and a beginning! Try writing them =)'});
+    //   //return;
+    // };
+    // if (!req.query.story) {
+    //   res.status(400).json({ error: 'Woah there, your story needs a beginning! Try writing one =)'});
+    //   return;
+    // };
+
+    // if (!req.query.contribution) {
+    //   res.status(400).json({ error: 'Woah there, your contribution has to have some content! Try writing some =)'});
+    //   return;
+    // };
+
     db.query(`INSERT INTO stories (cretor_id, story_title, story_beginning, is_complete) VALUES (${req.session.userId}, '${req.body.title}', '${req.body.story}', false);`)
     .then(data => {
     })
@@ -52,3 +79,11 @@ module.exports = (db) => {
 
   return router;
 };
+
+/*
+    SELECT contributions.story_id AS storyId, accepted_story_contributions.contribution_id, contributions.contribution AS contribution, contributions.id AS contributionID, stories.story_title AS title, stories.story_beginning AS beginning, stories.is_complete
+    FROM stories
+    JOIN contributions ON stories.id = contributions.story_id
+    JOIN accepted_story_contributions ON stories.id = contributions.story_id
+    WHERE stories.id = 4;
+*/

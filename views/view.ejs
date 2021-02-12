@@ -9,6 +9,13 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/viewload.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("button").click(function(){ location.reload();
+        });
+      });
+    </script>
+
   </head>
 <!-- root/, /filtered, /mystories, /view/::id -->
   <body>
@@ -16,13 +23,15 @@
     <%- include('partials/_nav') %>
 
     <main>
-      <%= console.log(data) %>
+      <%= console.log("data time!", data[0].is_complete) %>
       <section class="card full contributions">
         <article class="card full" id='<%= data[0].storyid %>'>
           <div class="card-header"><span ><%= data[0].title %></span></div>
-          <div class="thumbnails"><img src="../public/docs/unsplash01.jpg"></div>
+          <!-- <div class="thumbnails"><img src="../public/docs/unsplash01.jpg"></div> -->
           <div class="story"><%= data[0].beginning %></div>
+          <% if (!data[0].is_complete) { %>
           <button class="markCompleted" id='<%= data[0].storyid %>' type="submit">Mark Completed</button>
+          <% } %>
         </article>
 
         <% for(const datum of data) { %>
@@ -30,7 +39,7 @@
             <article class="card full">
               <div class="story"><%= datum.contribution %></div>
             </article>
-          <% } else { %>
+          <% } else if (!data[0].is_complete){ %>
             <article class="card full">
               <div class="story<%= datum.contributionid %>"><%= datum.contribution %></div>
               <footer class="upvotes"><button class="full" id="<%= datum.contributionid %>" type="submit">Accept Contribution</button><button>Upvotes: +4</button></footer>
@@ -38,7 +47,7 @@
           <% } %>
         <% } %>
       </section>
-      <% if (!data.is_complete) { %>
+      <% if (!data[0].is_complete) { %>
         <section class="card full add">
         <form action="/view/contribution" method="POST">
           <label for="directions">Add to a Story:</label>

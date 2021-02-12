@@ -4,7 +4,10 @@ const router  = express.Router();
 module.exports = (db) => {
   router.post("/contribution", function(req, res) {
     console.log(req.body)
-    db.query(`INSERT INTO contributions (story_id, contribution, user_id) VALUES (${req.body.storyId}, '${req.body.contribution}', ${req.session.userId});`)
+    db.query(`
+    INSERT INTO contributions (story_id, contribution, user_id)
+    VALUES (${req.body.storyId}, '${req.body.contribution}', ${req.session.userId});
+    `)
     .then(data => {
       console.log("query completed");
     })
@@ -17,3 +20,8 @@ module.exports = (db) => {
 
   return router;
 };
+
+// db.query(`
+//     INSERT INTO contributions (story_id, contribution, user_id)
+//     VALUES (${req.body.storyId}, $1, ${req.session.userId});
+//     `, [`${req.body.contribution}`])
