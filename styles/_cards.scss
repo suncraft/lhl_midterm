@@ -36,6 +36,12 @@ section {
 
 article {
   transition: all 500ms;
+
+  .story {
+  // white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  }
 }
 
 article:hover {
@@ -88,6 +94,14 @@ article:hover {
     }
   }
 
+}
+
+.section-title {
+  padding: 14px 21px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
 }
 
 
