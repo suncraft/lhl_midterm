@@ -5,11 +5,17 @@ module.exports = (db) => {
 
   //render view of the story with that id, if not a completed story, load contributions that are still waiting
   router.get("/:id", (req, res) => {
-    //const templateVars = { shortURL: req.params.shortURL, longURL: urlDatabase[req.params.shortURL].longURL, user: users[req.session.userId]};
-    //`/${"storyid"}`,"view/id page, templatevars"
-    res.render("view")
+
     //specific story that user selected
-    db.query(`SELECT * FROM stories WHERE id = ${req.session.userId};`);
+    db.query(`SELECT stories.story_title, stories.story_beginning, users.name, contributions.contribution FROM stories NATURAL JOIN users LEFT JOIN contributions ON stories.id = contributions.story_id LEFT JOIN accepted_story_contributions ON accepted_story_contributions.story_id = stories.id  WHERE stories.id = 2;`)
+    .then(data => {
+      res.render("view", {data: data.rows});
+    })
+    .catch(err => {
+      res
+      .status(500)
+      .json({ error: err.message });
+    });
   });
 
   //toggle complete status
