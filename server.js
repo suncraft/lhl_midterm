@@ -44,6 +44,7 @@ const storiesRoutes = require("./routes/stories");
 const viewRoutes = require("./routes/view");
 const contributionRoutes = require('./routes/contribution.js');
 const acceptedRoutes = require('./routes/accepted.js');
+const markCompletedRoutes = require('./routes/markCompleted.js');
 
 
 
@@ -56,6 +57,8 @@ app.use("/stories", storiesRoutes(db));
 app.use("/view", viewRoutes(db));
 app.use("/contribution", contributionRoutes(db));
 app.use("/accepted", acceptedRoutes(db));
+app.use("/markCompleted", markCompletedRoutes(db));
+
 
 
 // Home page

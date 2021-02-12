@@ -12,6 +12,22 @@ $(document).ready(function() {
       method: "POST",
       data: $string,
     })
+    .done(() => {
+      res.render("view")//view/${db.query(`insert then return new id`)}
+    })
+    .fail(error => console.log(error));
+  });
+
+  $(`button.markCompleted`).click(function(e){
+    e.preventDefault();
+    let storyId = $(this).attr("id")
+    let $string = `storyId=${storyId}`;
+
+    $.ajax({
+      url: `/markCompleted/completed`,
+      method: "POST",
+      data: $string,
+    })
   });
 
   const createStoryElement = function(story) {
