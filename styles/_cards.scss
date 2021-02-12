@@ -14,6 +14,8 @@ a:link, a:visited {
   //  color: $snow;
   //  min-height: 20rem;
    border-radius: 7px;
+   display: flex;
+   flex-direction: column;
  }
 
  .part {
@@ -57,13 +59,16 @@ article:hover {
   transform: scale(1.05);
 }
 
-
 .card-header, .upvotes {
   display: flex;
   justify-content: space-between;
   margin-top: 15px;
   font-family: 'Asul', sans-serif;
   font-size: bold;
+}
+//THIS KEEPS ITS NAME BECAUSE IT'S ALREADY ALL OVER EJS otherwise would be just footer
+.upvotes:last-child {
+    margin-top: auto
 }
 
 .incomplete-stories {
