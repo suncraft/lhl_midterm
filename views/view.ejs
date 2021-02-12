@@ -35,11 +35,14 @@
         </article>
 
         <% for(const datum of data) { %>
-          <% if (datum.contribution_id) { %>
+          <% if (datum.is_accepted) { %>
             <article class="card full">
               <div class="story"><%= datum.contribution %></div>
             </article>
-          <% } else if (!data[0].is_complete){ %>
+          <% } %>
+        <% } %>
+        <% for(const datum of data) { %>
+          <% if (!datum.is_accepted && !data[0].is_complete) { %>
             <article class="card full">
               <div class="story<%= datum.contributionid %>"><%= datum.contribution %></div>
               <footer class="upvotes"><button class="full" id="<%= datum.contributionid %>" type="submit">Accept Contribution</button><button>Upvotes: +4</button></footer>
@@ -49,7 +52,7 @@
       </section>
       <% if (!data[0].is_complete) { %>
         <section class="card full add">
-        <form action="/view/contribution" method="POST">
+        <form action="/contribution/contribution" method="POST">
           <label for="directions">Add to a Story:</label>
           <textarea name="contribution" id="contribution" class="addedToStory" placeholder="What happens next.."></textarea>
           <div>

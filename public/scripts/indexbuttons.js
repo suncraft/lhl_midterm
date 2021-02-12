@@ -18,45 +18,54 @@
 $(document).ready(function() {
   //checks form isn't empty, creates and redirects to view new story
   $("form").on("submit", function(event) {
-    //event.preventDefault();
+    event.preventDefault();
     const title = $(this.children[1]).val().trim();
     const text = $(this.children[2]).val().trim();
     const $string = $(this).serialize();
     console.log('title', title, 'text', text)
-    console.log('story object', storyID, 'storyid', storyID.id)
-    //errors are not currently working, were before I changed post to get?
-    if (title.length < 1) {
-      throw new Error("Please enter a title to submit a story.");
-    } else if (text === "" || text === null) {
-      throw new Error("Please enter a start to your story before submitting.");
-    } else {
-      //change hardcoded image to refer to db once db has actual images to refer to
-      // const storyID = db.query(`
-      // INSERT INTO stories (creator_id, story_title, story_beginning, is_complete, cover_photo_url)
-      // VALUES (${req.session.userID}, ${$(this.children[1]).val().trim()}, ${$(this.children[2]).val().trim()}, 0, https://www.pexels.com/photo/landscape-photography-of-brown-mountains-surrounding-lake-620337/)
-      // RETURNING *;
-      // `);
+    //console.log('story object', storyID, 'storyid', storyID.id)
 
-      const user = req.session.userId
-      const newStory = {
-        user: user,
-        content: {
-          text: $(this.children[1]).val().trim(),
-          title: $(this.children[2]).val().trim()
-        }
-      }
-      console.log('user=', user, 'user.id=', user.id)
-      $.ajax({
-        url: `view/${user.id}`,
-        method: "POST",
-        data: $string
+    if (title.length < 1) {
+      alert("Please enter a title to submit a story.");
+      return;
+    } else if (text === "" || text === null) {
+      alert("Please enter a start to your story before submitting.");
+      return;
+    } else {
+
+      db.query(`
+      INSERT INTO stories (cretor_id, story_title, story_beginning, cover_photo_url)
+      VALUES (2, $1, $2, #)
+      RETURNING *;
+      `, [`${$(this.children[1]).val().trim()}`, `${$(this.children[2]).val().trim()}`]
+      )
+      .done((data) => {
+        console.log("this should be my new story:", data, data.id)
+        // $(".incomplete-stories").prepend(createStoryElement(newStory))
+        res.redirect(`view/${data.id}`)
       })
-        .done(() => {
-          console.log('title', title, 'text', text)
-          $(".incomplete-stories").prepend(createStoryElement(newStory))
-          res.redirect(`view/${user.id}`)
-        })
-        .fail(error => console.log(error));
+      .fail(error => console.log(error))
+
+      // //const user = req.session.userId
+      // const newStory = {
+      //   user: user,
+      //   content: {
+      //     text: $(this.children[1]).val().trim(),
+      //     title: $(this.children[2]).val().trim()
+      //   }
+      // }
+      // console.log('user=', user, 'user.id=', user.id)
+      // $.ajax({
+      //   url: `view/${user.id}`,
+      // //   method: "POST",
+      // //   data: $string
+      // // })
+      //   .done(() => {
+      //     console.log('title', title, 'text', text)
+      //     $(".incomplete-stories").prepend(createStoryElement(newStory))
+      //     res.redirect(`view/${user.id}`)
+      //   })
+      //   .fail(error => console.log(error));
     }
   });
 

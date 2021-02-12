@@ -45,7 +45,7 @@ const viewRoutes = require("./routes/view");
 const contributionRoutes = require('./routes/contribution.js');
 const acceptedRoutes = require('./routes/accepted.js');
 const markCompletedRoutes = require('./routes/markCompleted.js');
-
+const newstoryRoutes = require('./routes/new.js');
 
 
 // Mount all resource routes
@@ -58,7 +58,7 @@ app.use("/view", viewRoutes(db));
 app.use("/contribution", contributionRoutes(db));
 app.use("/accepted", acceptedRoutes(db));
 app.use("/markCompleted", markCompletedRoutes(db));
-
+app.use("/new", newstoryRoutes(db));
 
 
 // Home page
@@ -193,10 +193,7 @@ app.get("/api/view", (req, res) => {
   db.query(`
     SELECT stories.*, contributions.*, users.name AS username FROM stories
     JOIN users ON users.id = cretor_id
-    JOIN accepted_story_contributions ON accepted_story_contributions.story_id = stories.id
-    JOIN contributions ON contributions.id = accepted_story_contributions.contribution_id
-    JOIN upvote_stories ON upvote_stories.story_id = stories.id
-    JOIN upvote_contribution ON upvote_contribution.contribution_id = contributions.id;
+    JOIN contributions ON stories.id = story_id;
     `)
     .then(data => {
       //console.log(data.rows)
