@@ -19,23 +19,27 @@
 
       <% console.log(data) %>
       <section class="card full contributions">
-        <article class="card full" id="<%= data[0].storyid %>">
+        <article class="card full">
           <div class="card-header"><span ><%= data[0].title %></span></div>
           <div class="thumbnails"><img src="../public/docs/unsplash01.jpg"></div>
           <div class="story"><%= data[0].beginning %></div>
         </article>
-        <article class="card full">
+
         <% for(const datum of data) { %>
           <% if (datum.contribution_id) { %>
-            <div class="story"><%= datum.contribution %></div>
-            <% } else { %>
+            <article class="card full">
               <div class="story"><%= datum.contribution %></div>
-              <footer class="upvotes"><button>Accept Contribution</button><button>Upvotes: +4</button></footer>
+            </article>
+          <% } else { %>
+            <% console.log("this is my id", datum.contributionid) %>
+            <article class="card full">
+              <div class="story"><%= datum.contribution %></div>
+              <footer class="upvotes"><button id=<%= datum.contributionid %>>Accept Contribution</button><button>Upvotes: +4</button></footer>
+            </article>
           <% } %>
         <% } %>
-        </article>
       </section>
-
+      <% if (!data.is_complete) { %>
         <section class="card full add">
         <form action="/view/contribution" method="POST">
           <label for="directions">Add to a Story:</label>
@@ -45,6 +49,7 @@
           </div>
         </form>
       </section>
+      <% } %>
 
     </main>
   </body>

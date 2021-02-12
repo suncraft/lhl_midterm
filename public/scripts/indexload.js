@@ -43,7 +43,7 @@ $(document).ready(function() {
     const statuswip = '<footer class="upvotes"><button>Story in progress, would you like to contribute?</button></footer>'
     const statuscomp = '<footer class="upvotes"><button>Story is complete, would you like to view?</button></footer>'
     const $story = `
-    <article class="card part" id=${story.story_id}>
+    <article class="card part" id=${story.id}>
     <div class="card-header"><span>${story.story_title}</span><span>By: ${story.username}</span></div>
     <div class="story">${story.story_beginning}</div>
     ${story.is_complete ? statuscomp : statuswip}
