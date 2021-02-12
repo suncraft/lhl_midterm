@@ -20,20 +20,28 @@
       <% console.log(data) %>
       <section class="card full contributions">
         <article class="card full">
-          <div class="card-header"><span ><%= data[0].story_title %></span><span>By: <%= data[0].name %></span></div>
+          <div class="card-header"><span ><%= data[0].title %></span></div>
           <div class="thumbnails"><img src="../public/docs/unsplash01.jpg"></div>
-          <div class="story"><%= data[0].story_beginning %></div>
+          <div class="story"><%= data[0].beginning %></div>
         </article>
 
         <% for(const datum of data) { %>
-          <article class="card full">
-            <div class="card-header"><span>By: <%= datum.user_id %></span></div>
-            <div class="story"><%= datum.contribution %></div>
-            <footer class="upvotes"><button>Accept Contribution</button><button>Upvotes: +4</button></footer>
-        </article>
-        <% } %>
+          <!-- <% let iterationCount = 1 %> -->
+          <% if (datum.contribution_id) { %>
+            <article class="card full">
+              <!-- <div class="card-header"><span>accepted contribution #: <%= iterationCount %></span></div> -->
+              <div class="story"><%= datum.contribution %></div>
 
-      </section>
+            </article>
+            <% iterationCount+= 1 %>
+            <% } else { %>
+              <article class="card full">
+                <div class="story"><%= datum.contribution %></div>
+                <footer class="upvotes"><button>Accept Contribution</button><button>Upvotes: +4</button></footer>
+                <% } %>
+                <% } %>
+
+              </section>
 
         <section class="card full add">
         <form action="/view/contribution" method="POST">

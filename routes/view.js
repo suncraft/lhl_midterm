@@ -6,8 +6,41 @@ module.exports = (db) => {
   //render view of the story with that id, if not a completed story, load contributions that are still waiting
   router.get("/:id", (req, res) => {
 
+
+    // SELECT
+    // stories.story_title,
+    // stories.story_beginning,
+    // users.name,
+    // contributions.contribution,
+    // accepted_story_contributions.contribution_id
+    // FROM accepted_story_contributions
+    // RIGHT JOIN contributions ON accepted_story_contributions.contribution_id = contributions.id
+    // JOIN stories ON stories.id = contributions.story_id
+    // NATURAL JOIN users
+    // WHERE stories.id = 2;
+
+
+    // accepted_story_contributions.contribution_id
+    // LEFT JOIN accepted_story_contributions ON accepted_story_contributions. story_id = stories.id
+    // stories.story_title,
+    // stories.story_beginning,
+    // users.name,
+    // contributions.contribution
     //specific story that user selected
-    db.query(`SELECT stories.story_title, stories.story_beginning, users.name, contributions.contribution FROM stories NATURAL JOIN users LEFT JOIN contributions ON stories.id = contributions.story_id LEFT JOIN accepted_story_contributions ON accepted_story_contributions.story_id = stories.id  WHERE stories.id = 2;`)
+    /*
+
+
+    */
+
+
+
+    db.query(`
+    SELECT contributions.story_id AS storyId, accepted_story_contributions.contribution_id, contributions.contribution AS contribution, contributions.id AS contributionID, stories.story_title AS title, stories.story_beginning AS beginning
+    FROM accepted_story_contributions
+    RIGHT JOIN contributions ON accepted_story_contributions.contribution_id = contributions.id
+    JOIN stories ON stories.id = contributions.story_id
+    WHERE stories.id = 2;
+    `)
     .then(data => {
       res.render("view", {data: data.rows});
     })

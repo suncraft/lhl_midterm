@@ -1,19 +1,19 @@
-<<<<<<< HEAD
-// const createStoryElement = function(story) {
-=======
-//const createStoryElement = function(story) {
->>>>>>> stuffsAndThings
-  //   //const date = $.timeago(new Date(story.created_at));
-  //   const $story = `
-  //   <article class="card part">
-  //   <div class="card-header"><span>${story.story_title}</span><span>By: ${req.session.userID}</span></div>
-  //   <div class="thumbnails"><img src="${story.cover_photo_url}"></div>
-  //   <div class="story">${story.story_beginning}</div>
-  //   <footer class="upvotes"><button>Contribute</button><button>Upvotes: +4</button></footer>
-  //   </article>
-  //   `;
-  //   return $story;
-  // };
+// <<<<<<< HEAD
+// // const createStoryElement = function(story) {
+// =======
+// //const createStoryElement = function(story) {
+// >>>>>>> stuffsAndThings
+//   //   //const date = $.timeago(new Date(story.created_at));
+//   //   const $story = `
+//   //   <article class="card part">
+//   //   <div class="card-header"><span>${story.story_title}</span><span>By: ${req.session.userID}</span></div>
+//   //   <div class="thumbnails"><img src="${story.cover_photo_url}"></div>
+//   //   <div class="story">${story.story_beginning}</div>
+//   //   <footer class="upvotes"><button>Contribute</button><button>Upvotes: +4</button></footer>
+//   //   </article>
+//   //   `;
+//   //   return $story;
+//   // };
 
   $(document).ready(function() {
     //checks form isn't empty, creates and redirects to view new story
