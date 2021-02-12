@@ -16,13 +16,24 @@
 
     <main>
 
-      <section class="incomplete-stories">
 
+      <section class="data">
+        <% for(const datum of data) { %>
+        <a href = '/view/<%= datum.id %>'>
+          <article class="card full" id=<% datum.id %>>
+            <div class="card-header"><span ><%= datum.story_title %></span><span>By: <%= datum.name %></span></div>
+            <div class="story"><%= datum.story_beginning %></div>
+            <% if (datum.is_complete) { %>
+              <footer class="upvotes"><button>Story is complete, would you like to view?</button></footer>
+            <% } else { %>
+              <footer class="upvotes"><button>Story in progress, would you like to contribute?</button></footer>
+            <% } %>
+          </article>
+        </a>
+        <% } %>
       </section>
 
-      <section class="completed">
 
-      </section>
 
     </main>
   </body>
