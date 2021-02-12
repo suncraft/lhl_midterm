@@ -3,8 +3,11 @@ LHL Node Skeleton
 
 ## Collaporators
 - Jaime Reuss 
+https://github.com/KPCE
 - Robin Mackenzie 
+https://github.com/suncraft
 - Munraj Grewal
+https://github.com/munraj-grewal
 
 ## Project Setup
 
