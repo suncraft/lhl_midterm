@@ -55,10 +55,7 @@ textarea {
   border-bottom: 2px solid black;
 }
 
-textarea:focus {
-  // border-style: none;
-  outline: none;
-}
+
 
 form:hover {
   background: linear-gradient(-45deg, $card-color, #0066cc, #ff80ff, #ff4d4d, $card-color, $card-color);
@@ -79,5 +76,15 @@ form:hover {
   }
   100% {
     background-position: 0%;
+  }
+}
+
+form:focus {
+  // border-style: none;
+  outline: none;
+  background: none;
+  background-color: $card-color;
+  textarea {
+    background: $snow;
   }
 }
