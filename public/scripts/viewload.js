@@ -22,7 +22,7 @@ $(document).ready(function() {
       event.preventDefault();
       let $string = $(this).serialize();
       let storyId = $("article.full").attr("id")
-      $string += "&storyId=2";
+      $string += `&storyId=${storyId}`;
       //errors are not currently working, were before I changed post to get?
       if ($(this.children[2]).length < 1) {
         throw new Error("Please enter text for contributing to a story.");
