@@ -1,6 +1,11 @@
 LHL Node Skeleton
 =========
 
+## Collaporators
+- Jaime Reuss 
+- Robin Mackenzie 
+- Munraj Grewal
+
 ## Project Setup
 
 The following steps are only for _one_ of the group members to perform.
