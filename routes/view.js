@@ -5,7 +5,7 @@ module.exports = (db) => {
 
   //render view of the story with that id, if not a completed story, load contributions that are still waiting
   router.get("/:id", (req, res) => {
-
+    console.log("what am i?", req.data, req.body, req.storyID)
     db.query(`
     SELECT contributions.story_id AS storyId, accepted_story_contributions.contribution_id, contributions.contribution AS contribution, contributions.id AS contributionID, stories.story_title AS title, stories.story_beginning AS beginning, stories.is_complete
     FROM accepted_story_contributions
