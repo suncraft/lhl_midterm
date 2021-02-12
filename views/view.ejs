@@ -31,14 +31,15 @@
               <div class="story"><%= datum.contribution %></div>
             </article>
           <% } else { %>
+            <% console.log("this is my id", datum.contributionid) %>
             <article class="card full">
               <div class="story"><%= datum.contribution %></div>
-              <footer class="upvotes"><button>Accept Contribution</button><button>Upvotes: +4</button></footer>
+              <footer class="upvotes"><button id=<%= datum.contributionid %>>Accept Contribution</button><button>Upvotes: +4</button></footer>
             </article>
           <% } %>
         <% } %>
       </section>
-
+      <% if (!data.is_complete) { %>
         <section class="card full add">
         <form action="/view/contribution" method="POST">
           <label for="directions">Add to a Story:</label>
@@ -48,6 +49,7 @@
           </div>
         </form>
       </section>
+      <% } %>
 
     </main>
   </body>
