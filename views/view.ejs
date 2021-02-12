@@ -17,7 +17,6 @@
 
     <main>
 
-      <% console.log(data) %>
       <section class="card full contributions">
         <article class="card full">
           <div class="card-header"><span ><%= data[0].title %></span></div>
@@ -31,10 +30,9 @@
               <div class="story"><%= datum.contribution %></div>
             </article>
           <% } else { %>
-            <% console.log("this is my id", datum.contributionid) %>
             <article class="card full">
-              <div class="story"><%= datum.contribution %></div>
-              <footer class="upvotes"><button id=<%= datum.contributionid %>>Accept Contribution</button><button>Upvotes: +4</button></footer>
+              <div class="story<%= datum.contributionid %>"><%= datum.contribution %></div>
+              <footer class="upvotes"><button class="full" id="<%= datum.contributionid %>" type="submit">Accept Contribution</button><button>Upvotes: +4</button></footer>
             </article>
           <% } %>
         <% } %>

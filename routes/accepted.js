@@ -3,7 +3,7 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.post("/contribution", function(req, res) {
-    db.query(`INSERT INTO contributions (story_id, contribution, user_id) VALUES (${req.body.storyId}, '${req.body.contribution}', ${req.session.userId});`)
+    db.query(`INSERT INTO accepted_story_contributions (story_id, contribution_id) VALUES (2, ${req.body.contributionId});`)
     .then(data => {
       console.log("query completed");
     })
@@ -13,6 +13,5 @@ module.exports = (db) => {
       .json({ error: err.message });
     });
   });
-
   return router;
 };
