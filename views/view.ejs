@@ -19,15 +19,15 @@
 
       <% console.log(data) %>
       <section class="card full contributions">
-        <article class="card full">
+        <article class="card full" id="<%= data[0].storyid %>">
           <div class="card-header"><span ><%= data[0].title %></span></div>
           <div class="thumbnails"><img src="../public/docs/unsplash01.jpg"></div>
           <div class="story"><%= data[0].beginning %></div>
         </article>
-
+        <article class="card full">
         <% for(const datum of data) { %>
-          <!-- <% let iterationCount = 1 %> -->
           <% if (datum.contribution_id) { %>
+<<<<<<< HEAD
             <article class="card full">
               <!-- <div class="card-header"><span>accepted contribution #: <%= iterationCount %></span></div> -->
               <div class="story"><%= datum.contribution %></div>
@@ -53,6 +53,16 @@
                 </form>
               </section>
               <% } else { %>
+=======
+            <div class="story"><%= datum.contribution %></div>
+            <% } else { %>
+              <div class="story"><%= datum.contribution %></div>
+              <footer class="upvotes"><button>Accept Contribution</button><button>Upvotes: +4</button></footer>
+          <% } %>
+        <% } %>
+        </article>
+      </section>
+>>>>>>> master
 
               <% } %>
 

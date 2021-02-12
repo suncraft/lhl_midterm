@@ -6,34 +6,6 @@ module.exports = (db) => {
   //render view of the story with that id, if not a completed story, load contributions that are still waiting
   router.get("/:id", (req, res) => {
 
-
-    // SELECT
-    // stories.story_title,
-    // stories.story_beginning,
-    // users.name,
-    // contributions.contribution,
-    // accepted_story_contributions.contribution_id
-    // FROM accepted_story_contributions
-    // RIGHT JOIN contributions ON accepted_story_contributions.contribution_id = contributions.id
-    // JOIN stories ON stories.id = contributions.story_id
-    // NATURAL JOIN users
-    // WHERE stories.id = 2;
-
-
-    // accepted_story_contributions.contribution_id
-    // LEFT JOIN accepted_story_contributions ON accepted_story_contributions. story_id = stories.id
-    // stories.story_title,
-    // stories.story_beginning,
-    // users.name,
-    // contributions.contribution
-    //specific story that user selected
-    /*
-
-
-    */
-
-
-
     db.query(`
     SELECT contributions.story_id AS storyId, accepted_story_contributions.contribution_id, contributions.contribution AS contribution, contributions.id AS contributionID, stories.story_title AS title, stories.story_beginning AS beginning, stories.is_complete
     FROM accepted_story_contributions
@@ -59,8 +31,6 @@ module.exports = (db) => {
   router.post("/:id", function(req, res) {
     db.query(`INSERT INTO stories (cretor_id, story_title, story_beginning, is_complete) VALUES (${req.session.userId}, '${req.body.title}', '${req.body.story}', false);`)
     .then(data => {
-      console.log("query executed")
-      // res.redirect(`/view/${this.id}`)
     })
     .catch(err => {
       res
