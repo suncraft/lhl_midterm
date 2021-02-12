@@ -30,11 +30,11 @@ module.exports = (db) => {
     //  oh and the markcomplete button does not change if the story is complete
     //  the query does work tho(can test this using either the filters page or using psql)
     db.query(`
-    SELECT contributions.story_id AS storyId, accepted_story_contributions.contribution_id, contributions.contribution AS contribution, contributions.id AS contributionID, stories.story_title AS title, stories.story_beginning AS beginning, stories.is_complete
-    FROM accepted_story_contributions
-    RIGHT JOIN contributions ON accepted_story_contributions.contribution_id = contributions.id
-    JOIN stories ON stories.id = contributions.story_id
-    WHERE stories.id = ${req.params.id};
+    SELECT contributions.story_id AS storyId, contributions.is_accepted, contributions.contribution AS contribution, contributions.id AS contributionID, stories.story_title AS title, stories.story_beginning AS beginning, stories.is_complete
+    FROM stories
+    LEFT JOIN contributions ON stories.id = story_id
+    WHERE stories.id = ${req.params.id}
+    ORDER BY contributions.id ASC;
     `)
     .then(data => {
       console.log({data: data.rows})
