@@ -6,6 +6,8 @@ form {
   align-items: center;
   border-radius: 5px;
   padding: 1%;
+  transition: all 500ms;
+  transition-timing-function: ease-in;
 
   // width: 80%;
   max-width: 800px;
@@ -19,7 +21,6 @@ form {
   }
   #contribution {
       min-width: 600px;
-
   }
 
   @media only screen and (max-width: 750px) {
@@ -34,9 +35,9 @@ form {
   }
 }
 
-form:hover {
-    background: linear-gradient(90deg, #000046, #1cb5e0);
-}
+// form:hover {
+//     background: linear-gradient(90deg, #000046, #1cb5e0);
+// }
 
 form div {
   font-family: 'Bungee', sans-serif;
@@ -57,4 +58,26 @@ textarea {
 textarea:focus {
   // border-style: none;
   outline: none;
+}
+
+form:hover {
+  background: linear-gradient(-45deg, $card-color, #0066cc, #ff80ff, #ff4d4d, $card-color, $card-color);
+  background-size: 500%;
+  animation: gradient 30s ease infinite;
+  // overflow: hidden;
+  textarea {
+    background: transparent;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0%;
+  }
+  50% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: 0%;
+  }
 }
