@@ -75,8 +75,9 @@ button:hover {
   display: none;
 }
 
-footer:last-child {
+footer {
   margin-top: auto;
+  // align-self: stretch;
 }
 
 
