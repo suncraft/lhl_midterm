@@ -12,6 +12,7 @@ $(document).ready(function() {
       data: $string,
     })
     .done(() => {
+      //location.reload();
       res.render("view")//view/${db.query(`insert then return new id`)}
     })
     .fail(error => console.log(error));
