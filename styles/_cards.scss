@@ -1,11 +1,21 @@
 
 section {
 //  background-color: brown;
+a:link, a:visited {
+  // padding: 14px 21px;
+  // border-radius: 5px;
+  // text-align: center;
+  text-decoration: none;
+  // display: inline-block;
+  cursor: default;
+
+}
  .card {
    background-color: $card-color;
   //  color: $snow;
   //  min-height: 20rem;
    border-radius: 7px;
+
  }
 
  .part {
