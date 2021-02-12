@@ -45,7 +45,7 @@
           <% if (!datum.is_accepted && !data[0].is_complete) { %>
             <article class="card full">
               <div class="story<%= datum.contributionid %>"><%= datum.contribution %></div>
-              <footer class="upvotes"><button class="full" id="<%= datum.contributionid %>" type="submit">Accept Contribution</button><button>Upvotes: +4</button></footer>
+              <footer class="upvotes"><button class="full" id="<%= datum.contributionid %>" type="submit">Accept Contribution</button></footer>
             </article>
           <% } %>
         <% } %>

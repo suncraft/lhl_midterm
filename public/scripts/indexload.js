@@ -22,6 +22,7 @@ $(document).ready(function() {
       } else {
         $(".incomplete-stories").prepend(createStoryElement(story));
       }
+
       $("article.part").click(function(e) {
         e.preventDefault();
         let $string = `storyId=${$(this).attr("id")}`;
@@ -33,35 +34,37 @@ $(document).ready(function() {
           window.location.href = `/view/${$(this).attr("id")}`
         })
       });
-      $("form").on("submit", function(event) {
-        event.preventDefault();
-        const title = $(this.children[1]).val().trim();
-        const text = $(this.children[2]).val().trim();
-        const $string = $(this).serialize();
-        console.log('title', title, 'text', text)
-        //console.log('story object', storyID, 'storyid', storyID.id)
-
-        if (title.length < 1) {
-          alert("Please enter a title to submit a story.");
-          return;
-        } else if (text === "" || text === null) {
-          alert("Please enter a start to your story before submitting.");
-          return;
-        } else {
-
-          $.ajax({
-            url: `/new/story`,
-            method: "POST",
-          })
-          .done((data) => {
-            console.log("this should be my new story:", data, data.id)
-            // $(".incomplete-stories").prepend(createStoryElement(newStory))
-            res.redirect(`view/${data.id}`)
-          })
-          .fail(error => console.log(error))
-        }
-      })
-
     }
+
+
   });
+  // $("form").on("submit", function(event) {
+  //   //event.preventDefault();
+  //   const title = $(this.children[1]).val().trim();
+  //   const text = $(this.children[2]).val().trim();
+  //   const $string = $(this).serialize();
+  //   console.log('title', title, 'text', text)
+  //   //console.log('story object', storyID, 'storyid', storyID.id)
+
+  //   if (title.length < 1) {
+  //     alert("Please enter a title to submit a story.");
+  //     return;
+  //   } else if (text === "" || text === null) {
+  //     alert("Please enter a start to your story before submitting.");
+  //     return;
+  //   } else {
+
+  //     $.ajax({
+  //       url: `/new/story`,
+  //       method: "POST",
+  //       data: $string
+  //     })
+  //     .done((data) => {
+  //       console.log("this should be my new story:", data, data.id)
+  //       // $(".incomplete-stories").prepend(createStoryElement(newStory))
+  //       res.redirect(`view/${data.id}`)
+  //     })
+  //     .fail(error => console.log(error))
+  //   }
+  // })
 });

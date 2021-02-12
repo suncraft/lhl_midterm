@@ -4,15 +4,15 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.post("/story", function(req, res) {
-    console.log("attempted new story", req.body.story_title, req.body.story_beginning, req.params.story_beginning, req.params.id)
+    console.log("attempted new story", req.body)
     db.query(`
-    INSERT INTO stories (cretor_id, story_title, story_beginning)
-    VALUES (2, $1, $2)
-    RETURNING *;
-    `, [`${req.body.story_title}`, `${req.body.story_beginning}`])
+    INSERT INTO stories (cretor_id, story_title, story_beginning, is_complete)
+    VALUES (2, '${req.body.title}', '${req.body.story}', false)
+    ;
+    `)//, [``, ``])
     .then(data => {
-      console.log("this should be my new story:", data, data.id)
-      res.redirect(`view/${data.id}`)
+      //console.log("this should be my new story:", data)
+      res.render(`index`)
     })
     .catch(err => {
       res
