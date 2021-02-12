@@ -5,15 +5,19 @@
 section {
 //  background-color: brown;
 a:link, a:visited {
-  // padding: 14px 21px;gi
-  // border-radius: 5px;
-  // text-align: center;
   text-decoration: none;
-  // display: inline-block;
   cursor: default;
 }
  .card {
    background-color: $card-color;
+  // background-image: $imgURL;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  // background-color: $card-color;
+  // background: $card-colort;
+
   //  color: $snow;
   //  min-height: 20rem;
    border-radius: 7px;

@@ -32,8 +32,10 @@ form {
       flex-direction: row;
     }
   }
+}
 
-
+form:hover {
+    background: linear-gradient(90deg, #000046, #1cb5e0);
 }
 
 form div {
