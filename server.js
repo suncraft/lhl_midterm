@@ -97,7 +97,9 @@ app.get("/api/index", (req, res) => {
     stories.*,
     users.name AS username
     FROM stories
-    LEFT JOIN users ON users.id = cretor_id;
+    LEFT JOIN users ON users.id = cretor_id
+    ORDER BY stories.id DESC
+    LIMIT 5;
     `)
     .then(data => {
       //console.log(data.rows, templateVars.stories)
