@@ -45,7 +45,7 @@ const viewRoutes = require("./routes/view");
 const contributionRoutes = require('./routes/contribution.js');
 const acceptedRoutes = require('./routes/accepted.js');
 const markCompletedRoutes = require('./routes/markCompleted.js');
-
+const newstoryRoutes = require('./routes/new.js');
 
 
 // Mount all resource routes
@@ -58,7 +58,7 @@ app.use("/view", viewRoutes(db));
 app.use("/contribution", contributionRoutes(db));
 app.use("/accepted", acceptedRoutes(db));
 app.use("/markCompleted", markCompletedRoutes(db));
-
+app.use("/new", newstoryRoutes(db));
 
 
 // Home page
