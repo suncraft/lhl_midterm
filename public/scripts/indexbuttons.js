@@ -1,4 +1,4 @@
-/ const createStoryElement = function(story) {
+//const createStoryElement = function(story) {
   //   //const date = $.timeago(new Date(story.created_at));
   //   const $story = `
   //   <article class="card part">

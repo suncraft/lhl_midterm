@@ -15,11 +15,6 @@ $(document).ready(function() {
     method: "GET",
     url: "/api/view"
   }).done((stories) => {
-    for(story of stories) {
-      if (story.id === 2) {
-        $("main").prepend(createStoryElement(story));
-      }
-    }
     //check there's content in contribution field
     //query db to write the contribution in, return the inserted row
     //AJAX to re-render the page, clear form and display contributions again
