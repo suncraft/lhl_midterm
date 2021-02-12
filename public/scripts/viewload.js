@@ -42,29 +42,29 @@ $(document).ready(function() {
     return $story;
   };
 
-  $.ajax({
-    method: "GET",
-    url: "/api/view"
-  }).done((stories) => {
-    //check there's content in contribution field
-    //query db to write the contribution in, return the inserted row
-    //AJAX to re-render the page, clear form and display contributions again
-    $("form").on("submit", function(event) {
-      event.preventDefault();
-      let $string = $(this).serialize();
-      let storyId = $("article.full").attr("id")
-      $string += `&storyId=${storyId}`;
-      console.log($string)
-      //errors are not currently working, were before I changed post to get?
-      if ($(this.children[2]).length < 1) {
-        throw new Error("Please enter text for contributing to a story.");
-      } else {
-        $.ajax({
-          url: `/contribution/contribution`,
-          method: "POST",
-          data: $string,
-        })
-      };
-    });
-  });
+  // $.ajax({
+  //   method: "GET",
+  //   url: "/api/view"
+  // }).done((stories) => {
+  //   //check there's content in contribution field
+  //   //query db to write the contribution in, return the inserted row
+  //   //AJAX to re-render the page, clear form and display contributions again
+  //   $("form").on("submit", function(event) {
+  //     event.preventDefault();
+  //     let $string = $(this).serialize();
+  //     let storyId = $("article.full").attr("id")
+  //     $string += `&storyId=${storyId}`;
+  //     console.log($string)
+  //     //errors are not currently working, were before I changed post to get?
+  //     if ($(this.children[2]).length < 1) {
+  //       throw new Error("Please enter text for contributing to a story.");
+  //     } else {
+  //       $.ajax({
+  //         url: `/contribution/contribution`,
+  //         method: "POST",
+  //         data: $string,
+  //       })
+  //     };
+  //   });
+  // });
 });
