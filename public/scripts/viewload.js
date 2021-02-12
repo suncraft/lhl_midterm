@@ -1,5 +1,19 @@
 //this will be what loads the sample stories to the index page
 $(document).ready(function() {
+
+  $(`button.full`).click(function(e){
+    e.preventDefault();
+    let contributionId = $(this).attr("id")
+    let storyContent = $(`div.story${contributionId}`).text();
+    let $string = `contributionId=${contributionId}&storyContent=${storyContent}`;
+
+    $.ajax({
+      url: `/accepted/contribution`,
+      method: "POST",
+      data: $string,
+    })
+  });
+
   const createStoryElement = function(story) {
     const $story = `
     <article class="card part" id=${story.story_id}>
@@ -11,6 +25,7 @@ $(document).ready(function() {
     `;
     return $story;
   };
+
   $.ajax({
     method: "GET",
     url: "/api/view"
