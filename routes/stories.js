@@ -53,11 +53,18 @@ module.exports = (db) => {
 
   //render my-stories page, showing their stories
   router.get("/:id", (req, res) => {
-    let ourQuery = `SELECT stories.*, users.name FROM stories INNER JOIN users ON users.id = stories.cretor_id AND users.name = '${req.session.userId}';`;
+    let ourQuery = `
+    SELECT stories.*,
+    users.name
+    FROM stories
+    INNER JOIN users ON users.id = stories.cretor_id
+    WHERE users.id = '${req.session.userId}';
+    `;
 
     db.query(ourQuery)
     .then(data => {
-      res.render("filtered_stories", {data: data.rows});
+      console.log("I'm trying to get to mystories page")
+      res.render("my_stories", {data: data.rows});
     })
     .catch(err => {
       res
@@ -65,7 +72,7 @@ module.exports = (db) => {
       .json({ error: err.message });
     });
     //"show story page, templatevars"
-    res.render("view")
+    // res.render("view")
     //all current users stories
   });
 
